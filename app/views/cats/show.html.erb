@@ -1,5 +1,4 @@
 
-
 <div class="margin-bottom">
   <% @trending_cats.each do |cat| %>
     <%= render partial: "shared/cat", locals: {cat: cat, hue: hue_now, size: "small"} %>
@@ -12,7 +11,7 @@
   </div>
 </div>
 
-<div class="margin-bottom">
+<div class="mlb">
   <div class="bg-grey small">
     <% @cat_settings.each do |key, value| %>
       <p class="padding-all clearfix">

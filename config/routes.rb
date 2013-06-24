@@ -16,6 +16,8 @@ Nassau::Application.routes.draw do
   get 'settings' => 'users#edit', as: 'settings'
   get 'logout' => 'sessions#destroy', as: 'logout'
 
+  get 'experimental' => 'home#experimental'
+
   resources :cats
   resources :records
   resources :sessions
