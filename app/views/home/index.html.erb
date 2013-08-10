@@ -1,9 +1,15 @@
+
+
 <div class="boxes clearfix margin-bottom">
   <% @options.each do |cat| %>
-    <div class="blocks clearfix">
+    <div class="blocks long clearfix">
       <% cat[:days].each do |key, value| %>
         <div class="day " style="<%= 'background-color: #'+cat[:color]+';' if value %>" data-date="<%= key %>"></div>
       <% end %>
+    </div>
+
+    <div style="background-color: #111; color: white; padding: .3em; font-size: 12px;">
+      <span class="cat-link"><%= link_to cat[:name], '/cats/'+cat[:name] %></span>
     </div>
   <% end %>
 </div>
