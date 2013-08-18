@@ -1,6 +1,6 @@
 class Cat < ActiveRecord::Base
-  attr_accessible :dashboard, :day_avgs, :name, :user_id, :color
-  belongs_to :user, :record
+  attr_accessible :name, :user_id
+  belongs_to :user
   validates_presence_of :name
 
   def equalize_then_save

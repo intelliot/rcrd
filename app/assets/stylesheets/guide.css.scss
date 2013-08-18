@@ -1,0 +1,46 @@
+div.guidenav {
+  position: relative;
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border: solid 1px #eee;
+    position: absolute;
+    right: 620px;
+    li {
+      margin: 0;
+      padding: 0;
+      display: block;
+      a {
+        text-align: center;
+        display: block;
+        padding: .6em 1.4em;
+        border-bottom: solid 1px #f7f7f7;
+        &:hover {
+          background-color: #fcfcfc;
+        }
+      }
+      &:last-child {
+        a {
+          border: none;
+        }
+      }
+      &.current {
+        background-color: #f2f2f2;
+      }
+    }
+  }
+  @media (max-width: 840px) {
+    ul {
+      position: static; 
+      display: inline-block;
+      margin-bottom: 1em; 
+      li {
+        display: inline-block;
+        a {
+          display: inline-block;
+        }
+      }
+    }
+  }
+}

@@ -3,21 +3,34 @@ class HomeController < ApplicationController
   def index 
     @num_days = 60  
     @options = []
-    @cats = current_user.cats.where('dashboard=?', true).order('name ASC')
+    @settings = current_user.settings.where('name=? OR name=?', 'dashboard', 'day_avgs').order('name ASC')
+
+    # TODO: Refactor out of old model
+
+    @cats = []
+    @settings.each do |setting|
+      puts setting.inspect
+      cat = @cats.find {|a| a[:name] == setting.name}
+      if cat 
+        cat[setting.name] = true if setting.on
+      else
+        @cats << {"name" => setting.content, setting.name => true} if setting.on  
+      end 
+    end
 
     colors = ['96b4fd', '032780', '009942', 'D42627', 'cf0b7b']
     c_i = 0
 
     @cats.each do |cat|
       option = {}
-      option[:name] = cat.name
+      option[:name] = cat['name']
       option[:color] = colors[c_i]
-      option[:days] = current_user.binary_cat_existence(@num_days, cat[:name])
-      option[:day_avgs] = cat.day_avgs 
+      option[:days] = current_user.binary_cat_existence(@num_days, cat['name'])
+      option[:day_avgs] = cat['day_avgs']
       if option[:day_avgs]
-        option[:last_4_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 4.weeks, cat.name)
-        option[:last_8_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 8.weeks, cat.name)
-        option[:last_16_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 16.weeks, cat.name) 
+        option[:last_4_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 4.weeks, cat['name'])
+        option[:last_8_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 8.weeks, cat['name'])
+        option[:last_16_weeks] = current_user.records.get_weekly_frequency_since(Date.today - 16.weeks, cat['name']) 
       end
       @options << option 
 

@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :records
-  has_many :cats 
+  has_many :settings 
   attr_accessible :email, :password, :password_confirmation, :dashboard
   attr_accessor :password
   before_save :encrypt_password

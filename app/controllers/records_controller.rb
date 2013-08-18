@@ -8,6 +8,13 @@ class RecordsController < ApplicationController
     @records = current_user.records.order('target DESC').limit(40)
   end
 
+  def distribution 
+    @frequencies_obj = current_user.get_list_of_cat_frequencies
+    @frequencies = []
+    @frequencies_obj.each {|k, v| @frequencies << v }
+    @frequencies_json = @frequencies.to_json
+  end
+
   def find
     @cat_name = params[:cat]
     # if this matches an existing cat, redirect there
