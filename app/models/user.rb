@@ -27,15 +27,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def current_time_zone
-    r = self.records.limit(1).first
-    r ? r.time_zone : self.default_time_zone
-  end
-
-  def default_time_zone
-    ActiveSupport::TimeZone.new("Pacific Time (US & Canada)")
-  end
-
   def get_trending_cats
     cat_freqs = self.get_list_of_cat_frequencies
     cat_freqs = cat_freqs.sort_by {|k,v| -v}
@@ -57,8 +48,8 @@ class User < ActiveRecord::Base
   def binary_cat_existence(num_days, cat)
     days = {} 
 
-    past_date = self.current_time_zone.today - (num_days - 1).days 
-    today = self.current_time_zone.today
+    past_date = self.time_zone.today - (num_days - 1).days 
+    today = self.time_zone.today
     (past_date..today).each do |day|
       days[day.strftime('%F')] = false 
     end
