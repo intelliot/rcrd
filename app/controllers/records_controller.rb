@@ -42,7 +42,7 @@ class RecordsController < ApplicationController
   end
 
   def new
-    @record = current_user.records.new(target: current_user.current_time_zone.now)
+    @record = current_user.records.new(target: current_user.local_time.now)
     @last_7_days = current_user.records.where('target > ?', Date.today - 7.days)
   end
 
@@ -52,7 +52,7 @@ class RecordsController < ApplicationController
     if @record.save
       puts @record.inspect
       # Convert target back to UTC
-      @record.target = current_user.current_time_zone.local_to_utc @record.target
+      @record.target = current_user.local_time.local_to_utc @record.target
       @record.save
       flash[:notice] = "Record was successfully created."
       redirect_to action: 'new'

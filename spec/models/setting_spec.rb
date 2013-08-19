@@ -1,5 +1,14 @@
 require 'spec_helper'
 
 describe Setting do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  before(:each) do
+    @settings = []
+    @settings << Setting.create!(
+      name: "dashboard", 
+      on: true, 
+      user_id: 2,
+      content: "stuff") 
+  end
+
 end

@@ -3,6 +3,6 @@
 
 # rcrd
 
-rcrd is a tool I built to track habits, like exercise or drinking.
+A tool for tracking and gaining insight into anything you do repeatedly.
 
 [http://rcrd.org/guide](http://rcrd.org/guide)

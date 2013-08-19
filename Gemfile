@@ -2,23 +2,21 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.2.13'
 gem 'pg'
+gem 'json'
+gem 'bcrypt-ruby', require: 'bcrypt'
+gem 'newrelic_rpm'
+gem 'unicorn'
 
 group :development, :test do
   gem 'rspec-rails'
 end
 
-gem 'json'
-gem 'jquery-rails'
-
-gem 'bcrypt-ruby', require: 'bcrypt'
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails'
   gem 'coffee-rails'
   gem 'uglifier'
   gem 'd3-rails'
+  gem 'jquery-rails'
 end
 
 group :test do

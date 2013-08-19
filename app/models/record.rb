@@ -8,12 +8,14 @@ class Record < ActiveRecord::Base
     self.target.in_time_zone(self.time_zone)
   end
 
-  # TODO: Depracate
+  # TODO: Deprecate
+  # Tests have been deleted
   def cats_from_raw
     (self.raw || '').split(/,/).map {|cat| cat.strip}
   end
 
-  # TODO: Depracate, hand this logic over to helper
+  # TODO: Deprecate, hand this logic over to helper
+  # Tests have been deleted
   def cats_from_raw_without_mags
    cats_from_raw.map {|cat| cat.sub /^\s*\d+\.*\d*\s*/, '' }
   end

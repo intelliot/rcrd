@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :records
   has_many :settings 
+  has_many :cats 
   attr_accessible :email, :password, :password_confirmation, :dashboard, :time_zone
   attr_accessor :password
   before_save :encrypt_password
@@ -11,13 +12,13 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, on: :create
   validates_confirmation_of :password, message: "must match confirmation"
 
+  def local_time 
+    ActiveSupport::TimeZone.new self.time_zone
+  end
+
   def self.authenticate(email, password)
     user = find_by_email(email.downcase)
-    if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
-      user
-    else
-      nil
-    end
+    user if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
   end
 
   def encrypt_password
@@ -48,8 +49,8 @@ class User < ActiveRecord::Base
   def binary_cat_existence(num_days, cat)
     days = {} 
 
-    past_date = self.time_zone.today - (num_days - 1).days 
-    today = self.time_zone.today
+    past_date = self.local_time.today - (num_days - 1).days 
+    today = self.local_time.today
     (past_date..today).each do |day|
       days[day.strftime('%F')] = false 
     end
