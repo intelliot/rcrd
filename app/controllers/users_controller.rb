@@ -28,7 +28,7 @@ class UsersController < ApplicationController
       cookies.permanent.signed[:user_id] = @user.id
       redirect_to root_url, notice: "Signed up!"
     else
-      render template: "sessions/new"
+      render action: :new
     end
   end
 
