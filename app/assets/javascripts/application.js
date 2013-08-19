@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3 
+//= require distribution 
 
 if (typeof block_data != 'undefined') {
 

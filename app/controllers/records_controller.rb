@@ -9,10 +9,13 @@ class RecordsController < ApplicationController
   end
 
   def distribution 
-    @frequencies_obj = current_user.get_list_of_cat_frequencies
-    @frequencies = []
-    @frequencies_obj.each {|k, v| @frequencies << v }
-    @frequencies_json = @frequencies.to_json
+    @frequencies = current_user.get_list_of_cat_frequencies
+    @frequencies_arr = []
+    @frequencies.each do |k, v|
+      @frequencies_arr << {"name" => k, "times" => v}
+    end
+    @frequencies_arr.sort! { |a, b| b["times"] <=> a["times"] }
+    @frequencies = @frequencies_arr.to_json
   end
 
   def find
