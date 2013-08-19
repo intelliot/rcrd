@@ -24,9 +24,11 @@
           <li class="<%= current 'cats' %>"><a href="/cats">cats</a></li>
           <li class="<%= current 'users', 'edit' %>"><a href="/settings">settings</a></li>
         <% else %>
-          <li class="<%= current 'sessions', 'new' %><%= current 'home', 'welcome' %>"><a href="/sessions/new">dashboard</a></li>
+          <li class="<%= current 'home', 'welcome' %>"><a href="/">welcome</a></li>
+          <li class="<%= current 'sessions', 'new' %>"><a href="/sessions/new">log in</a></li>
+          <li class="<%= current 'users', 'new' %>"><a href="/users/new">sign up</a></li>
         <% end %>
-        <li class="<%= current 'home', 'guide' %><%= current 'home', 'stats' %>"><a href="/guide">guide</a></li>
+        <li class="<%= current 'home', 'guide' %><%= current 'home', 'stats' %><%= current 'home', 'about' %>"><a href="/guide">guide</a></li>
       </ul>
     </header>
     <%= yield %>

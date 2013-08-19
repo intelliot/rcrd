@@ -15,6 +15,10 @@ class UsersController < ApplicationController
     end
   end
 
+  def new 
+    @user = User.new 
+  end
+
   def create
     if params[:user][:email]
       params[:user][:email].downcase!
