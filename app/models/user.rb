@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, on: :create
   validates_confirmation_of :password, message: "must match confirmation"
 
-  def local_time 
+  def local_time
     ActiveSupport::TimeZone.new self.time_zone
   end
 

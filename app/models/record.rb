@@ -5,7 +5,8 @@ class Record < ActiveRecord::Base
   validates_presence_of :raw, :user_id, :target
 
   def local_target
-    self.target.in_time_zone(self.time_zone)
+    zone = ActiveSupport::TimeZone.new(self.time_zone)
+    self.target.in_time_zone(zone)
   end
 
   # TODO: Deprecate
@@ -30,5 +31,23 @@ class Record < ActiveRecord::Base
    minutes = self.local_target.strftime('%k').to_f * 60.0
    minutes += self.local_target.strftime('%M').to_f
    (minutes / 1440.0)  * 360.0
+  end
+
+  # For temporary backwards compatibility
+  def time_zone_text
+    if self.raw && self.raw.match("time zone")
+      record = self
+    else
+      target = self.target || Time.now.utc
+      record = self.user.records.where("raw LIKE ? AND target < ?", '%time zone%', target).limit(1).first
+    end
+    if record
+      cats = record.cats_from_raw
+      cats.delete 'time zone' # not the most elegant thing in the world
+      zone_text = cats.first 
+      return zone_text || nil
+    else
+      return nil
+    end
   end
 end
