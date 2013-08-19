@@ -47,13 +47,9 @@ class RecordsController < ApplicationController
   end
 
   def create      
-# @record.target = Time.now.utc.strftime('%c') # old shoddy workaround
     @record = current_user.records.new(params[:record])
+    @record.target = current_user.local_time.local_to_utc @record.target
     if @record.save
-      puts @record.inspect
-      # Convert target back to UTC
-      @record.target = current_user.local_time.local_to_utc @record.target
-      @record.save
       flash[:notice] = "Record was successfully created."
       redirect_to action: 'new'
     else        
