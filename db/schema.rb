@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130818205647) do
+ActiveRecord::Schema.define(:version => 20130818235913) do
 
   create_table "cats", :force => true do |t|
     t.string   "name"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130818205647) do
     t.text     "dashboard"
     t.string   "password_hash"
     t.string   "password_salt"
+    t.string   "time_zone",     :default => "Pacific Time (US & Canada)", :null => false
   end
 
 end

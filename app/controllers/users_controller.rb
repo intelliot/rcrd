@@ -2,12 +2,10 @@ class UsersController < ApplicationController
 
   def edit
     @user = current_user
-    @cats = current_user.cats.order('name ASC')
   end
 
   def update
     @user = User.find params[:id] 
-    puts @user.inspect
     if @user.update_attributes(params[:user])
       flash[:notice] = "User was successfully updated."
       redirect_to :settings
