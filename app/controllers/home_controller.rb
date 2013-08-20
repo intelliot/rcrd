@@ -1,5 +1,8 @@
 class HomeController < ApplicationController
 
+  # Pages in HomeController are static and 
+  # do not require authentication
+
   def index 
     @num_days = 60  
     @options = []
@@ -56,40 +59,7 @@ class HomeController < ApplicationController
 
 
   def welcome
-  end
-
-  def experimental
-    records = Record.all
-    @data = {}
-
-    # for each record (assuming 3 cats)
-      # for each cat
-        # relate to all others
-
-    records.each do |record|
-      puts record.inspect 
-      cats = record.cats_from_raw_without_mags
-      cats.each do |source|
-        cats.each do |target|
-          break if source == target
-          if source < target
-            key = source
-            value = target
-          else
-            key = target
-            value = source
-          end
-          next if @data.has_key? key && @data[key] == target
-          @data[key] = target
-        end  
-      end  
-    end
-
-    # relate(source, target)
-      # relations are always stored alphabetically
-        # e.g. swim -> workout
-        # not workout -> swim 
-      # if source == target, return 
+    @frontpage = true
   end
 
   def about

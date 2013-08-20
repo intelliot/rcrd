@@ -1,21 +1,7 @@
 class UsersController < ApplicationController
 
-  def edit
-    @user = current_user
-  end
-
-  def update
-    @user = User.find params[:id] 
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "User was successfully updated."
-      redirect_to :settings
-    else
-      flash[:notice] = "Sorry dude, there was a problem"
-      redirect_to :settings
-    end
-  end
-
   def new 
+    redirect_to :root if current_user
     @user = User.new 
   end
 
@@ -29,6 +15,21 @@ class UsersController < ApplicationController
       redirect_to root_url, notice: "Signed up!"
     else
       render action: :new
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find params[:id] 
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "User was successfully updated."
+      redirect_to :settings
+    else
+      flash[:notice] = "Sorry dude, there was a problem"
+      redirect_to :settings
     end
   end
 

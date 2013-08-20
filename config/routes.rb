@@ -20,8 +20,6 @@ Nassau::Application.routes.draw do
   get 'records/find' => 'records#find', as: 'find'
   get 'records/distribution' => 'records#distribution'
 
-  get 'experimental' => 'home#experimental'
-
   resources :cats
   resources :records
   resources :sessions
