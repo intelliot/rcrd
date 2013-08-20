@@ -25,10 +25,9 @@
             <li class="<%= current 'home', 'index' %><%= current 'home', 'welcome' %>"><a href="/">dashboard</a></li>
             <li class="<%= current 'records', 'new' %>"><a href="/records/new">add</a></li>
             <li class="<%= current 'records', 'index' %>"><a href="/records">records</a></li>
-            <li class="<%= current 'cats' %>"><a href="/cats">cats</a></li>
             <li class="<%= current 'users', 'edit' %>"><a href="/settings">settings</a></li>
           <% else %>
-            <li class="<%= current 'home', 'welcome' %>"><a href="/">welcome</a></li>
+            <li class="<%= current 'home', 'welcome' %>"><a href="/">&laquo; welcome</a></li>
             <li class="<%= current 'sessions', 'new' %>"><a href="/log-in">log in</a></li>
             <li class="<%= current 'users', 'new' %>"><a href="/sign-up">sign up</a></li>
           <% end %>

@@ -31,12 +31,10 @@
        .attr("fill", "steelblue")
        .on("mouseover", function(d) {
             d3.select(this).style("fill", "#5c93c0")
-            d3.select("#cat-name h2").html(d.name);
+            d3.select("#cat-name h2").html(d.name+" -  "+d.times);
        })
        .on("mouseout", function(d) {
             d3.select(this).style("fill", "steelblue");
-            d3.select("#cat-name h2").html(d.name);
        })
-
   }
 })();
