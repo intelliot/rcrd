@@ -1,23 +1,36 @@
 class Record < ActiveRecord::Base
   belongs_to :user
   has_many :appearances
-  has_many :cats, through: :apprearances 
+  has_many :cats, through: :appearances 
   attr_accessible :target, :raw, :time_zone
   default_scope order 'target DESC'
   validates_presence_of :raw, :user_id, :target
   before_save :sync_raw_with_cats
 
   def sync_raw_with_cats
-    self.raw.cats_from_raw.each do |raw_cat|
-      # split mag up from cat
-      mag =
-      # if mag, unpluralize cat:w
-      if record.user.cats.find_by_name contains 
-      # else, create one
-        cat = Cat.new
-        cat.name = 
+    self.cats_from_raw.each do |raw_cat|
 
-      # end
+      # split mag up from cat
+      mag_match = raw_cat.match(/^\s*(\d+[\d\.\:]*)\s*/) # TODO: test edge cases of these
+      if mag_match
+        mag = mag_match[1]
+      else
+        mag = nil
+      end 
+      puts "mag"
+      puts mag
+      cat_name = raw_cat.match(/([a-zA-Z0-9]+)$/)[1] # This may duplicate helpers
+      cat = Cat.where('name = ? AND user_id = ?', cat_name, self.user_id).first
+      if !cat
+        cat = Cat.create!(name: cat_name, user_id: self.user_id)
+      end
+      if !self.cats.map(&:id).include?(cat.id)
+        self.cats << cat
+      end
+      appear = self.appearances.where('cat_id = ? AND magnitude = ?', cat.id, mag)
+      if appear.empty?
+        self.appearances << Appearance.create!(cat_id: cat.id, record_id: self.id, magnitude: mag)
+      end
     end
   end
 
