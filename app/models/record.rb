@@ -1,8 +1,25 @@
 class Record < ActiveRecord::Base
   belongs_to :user
+  has_many :appearances
+  has_many :cats, through: :apprearances 
   attr_accessible :target, :raw, :time_zone
   default_scope order 'target DESC'
   validates_presence_of :raw, :user_id, :target
+  before_save :sync_raw_with_cats
+
+  def sync_raw_with_cats
+    self.raw.cats_from_raw.each do |raw_cat|
+      # split mag up from cat
+      mag =
+      # if mag, unpluralize cat:w
+      if record.user.cats.find_by_name contains 
+      # else, create one
+        cat = Cat.new
+        cat.name = 
+
+      # end
+    end
+  end
 
   def local_target
     zone = ActiveSupport::TimeZone.new(self.time_zone)
@@ -11,6 +28,8 @@ class Record < ActiveRecord::Base
 
   # TODO: Deprecate
   # Tests have been deleted
+  # Really? This seems useful
+  # TODO: Add tests back in
   def cats_from_raw
     (self.raw || '').split(/,/).map {|cat| cat.strip}
   end
