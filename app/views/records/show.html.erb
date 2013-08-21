@@ -2,14 +2,10 @@
 
 <div class="mfy">
   <div class="margin-bottom-small"><%= @record.local_target.strftime('%l:%M%P') %></div>
-  <% @record.cats_from_raw.each do |cat| %>
-    <%= render partial: "shared/cat", locals: {cat: cat, hue: @record.hue, size: "large"} %>
+  <% @record.appearances.each do |appear| %>
+    <%= render partial: "shared/appearance", locals: {appear: appear, size: "large"} %>
   <% end %>
 </div>
-
-<div class="mfy clearfix">
-
-
 
 <div class="mfy clearfix">
   <%= form_for @record do |f| %>
@@ -39,8 +35,6 @@
   <% end %>
 </div>
 
-
-  <p>the form is UTC but the time is displayed in the correct zone, please bear with me</p>
   <%= render 'form' %>
   <%= link_to "delete", @record, method: :delete, confirm: "Sure?" %>
 </div>

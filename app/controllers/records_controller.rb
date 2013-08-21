@@ -5,7 +5,7 @@ class RecordsController < ApplicationController
   helper ApplicationHelper 
 
   def index
-    @records = current_user.records.order('target DESC').limit(40)
+    @records = current_user.records.order('target DESC').includes(:appearances).limit(40)
   end
 
   def distribution 
@@ -41,7 +41,7 @@ class RecordsController < ApplicationController
   end
 
   def show 
-    @record = current_user.records.find params[:id]  
+    @record = current_user.records.find params[:id]
   end
 
   def new

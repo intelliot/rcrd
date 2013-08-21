@@ -5,16 +5,12 @@ class CatsController < ApplicationController
   def index
     # a more in-depth report of cat usage (frequency, cohorts)
     # a stream (the squiggly bulgy timeline one) graph of cats would be cool
-    @trending = current_user.get_trending_cats.slice 0, 100
+    #@trending = current_user.get_trending_cats.slice 0, 100
+    @cats = current_user.cats.sort_by{|c| -c.appearances.count }
   end
 
   def show
-    @name = params[:id]
-    @cat = current_user.cats.find_or_create_by_name @name
-    @records = current_user.records.where("raw ILIKE ?", '%'+@name+'%') 
-
-    @trending_cats = current_user.get_trending_cats[0..7]
-    @trending_cats.delete @name
+    @cat = current_user.cats.find params[:id] 
   end
 
   def edit 

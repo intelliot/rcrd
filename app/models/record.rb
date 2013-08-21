@@ -17,9 +17,7 @@ class Record < ActiveRecord::Base
       else
         mag = nil
       end 
-      puts "mag"
-      puts mag
-      cat_name = raw_cat.match(/([a-zA-Z0-9]+)$/)[1] # This may duplicate helpers
+      cat_name = Cat.no_mag(raw_cat)
       cat = Cat.where('name = ? AND user_id = ?', cat_name, self.user_id).first
       if !cat
         cat = Cat.create!(name: cat_name, user_id: self.user_id)
@@ -27,9 +25,16 @@ class Record < ActiveRecord::Base
       if !self.cats.map(&:id).include?(cat.id)
         self.cats << cat
       end
-      appear = self.appearances.where('cat_id = ? AND magnitude = ?', cat.id, mag)
-      if appear.empty?
-        self.appearances << Appearance.create!(cat_id: cat.id, record_id: self.id, magnitude: mag)
+      if mag
+        appear = Appearance.where('record_id = ? AND cat_id = ? AND magnitude = ?', self.id, cat.id, mag).first
+      else
+        appear = Appearance.where('record_id = ? AND cat_id = ?', self.id, cat.id).first
+      end
+      if !appear
+        appear = Appearance.create!(cat_id: cat.id, record_id: self.id, magnitude: mag)
+      end
+      if !self.appearances.map(&:id).include?(appear.id)
+        self.appearances << appear
       end
     end
   end

@@ -7,8 +7,8 @@
 </div>
 -->
 
-<h2 class="mfb">50 Most frequently used cats</h2>
+<h2 class="mfb">Your cats</h2>
 
-<% @trending.each do |cat| %>
-  <%= render :partial => "shared/cat", :locals => {:cat => cat, :hue => hue_now} %>
+<% @cats.each do |cat| %>
+  <%= render :partial => "shared/cat", :locals => {:cat => cat} %>
 <% end %>
