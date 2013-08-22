@@ -8,16 +8,19 @@ class Record < ActiveRecord::Base
   before_save :sync_raw_with_cats
 
   def sync_raw_with_cats
+    self.appearances.map(&:destroy) # hacky fix for now
     self.cats_from_raw.each do |raw_cat|
-
       # split mag up from cat
-      mag_match = raw_cat.match(/^\s*(\d+[\d\.\:]*)\s*/) # TODO: test edge cases of these
+      mag_match = raw_cat.match(/^\s*(\d+[\d\.\:]*)\s*/) # TODO: test edge cases of this
       if mag_match
         mag = mag_match[1]
       else
         mag = nil
       end 
       cat_name = Cat.no_mag(raw_cat)
+      if mag 
+        cat_name = cat_name.singularize
+      end
       cat = Cat.where('name = ? AND user_id = ?', cat_name, self.user_id).first
       if !cat
         cat = Cat.create!(name: cat_name, user_id: self.user_id)
@@ -25,17 +28,8 @@ class Record < ActiveRecord::Base
       if !self.cats.map(&:id).include?(cat.id)
         self.cats << cat
       end
-      if mag
-        appear = Appearance.where('record_id = ? AND cat_id = ? AND magnitude = ?', self.id, cat.id, mag).first
-      else
-        appear = Appearance.where('record_id = ? AND cat_id = ?', self.id, cat.id).first
-      end
-      if !appear
-        appear = Appearance.create!(cat_id: cat.id, record_id: self.id, magnitude: mag)
-      end
-      if !self.appearances.map(&:id).include?(appear.id)
-        self.appearances << appear
-      end
+
+      #self.appearances << Appearance.create!(cat_id: cat.id, record_id: self.id, magnitude: mag)
     end
   end
 
