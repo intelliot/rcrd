@@ -11,6 +11,31 @@ class CatsController < ApplicationController
 
   def show
     @cat = current_user.cats.find params[:id] 
+=begin
+    # of the appearances this cat has had, grab siblings with magnitudes
+    @quant_cohorts = [] 
+    @cat.appearances.each do |appear|
+      appear.record.appearances.each do |co_appear|
+        @quant_cohorts << co_appear if co_appear.magnitude
+      end
+    end 
+
+    # pull statistics from this data
+    # now:
+      # max
+      # min
+      # average 
+    @maxes = {}
+    @quant_cohorts.each do |appear|
+      if !@maxes.has_key? appear.cat.name 
+        @maxes[appear.cat.name] = appear.magnitude  
+      else
+        if appear.magnitude > @maxes[appear.cat.name] 
+          @maxes[appear.cat.name] = appear.magnitude  
+        end
+      end
+    end
+=end
   end
 
   def edit 
@@ -19,25 +44,13 @@ class CatsController < ApplicationController
   end
 
   def update
-    if params[:id].match /[0-9]+/
-      @cat = current_user.cats.find_by_id params[:id]
+    @cat = current_user.cats.find_by_id params[:id]
+    if @cat.update_attributes(params[:cat])
+      flash[:notice] = "Your cat was successfully updated."
     else
-      @cat = current_user.cats.find_or_create_by_name params[:id]
+      flash[:notice] = "There was a problem saving your cat."
     end
-
-    #@option = params[:option]
-
-    if @cat.equalize_then_save
-      redirect_to '/cats/'+@cat.name+'/edit'  
-    end
-
-
-    #@cat[@option] = !@cat[@option]
-    #if @cat.equalize_then_save
-    #  render text: "success"
-    #else
-    #  render text: "error"
-    #end
+    redirect_to @cat
   end
 
 end

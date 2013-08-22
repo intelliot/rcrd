@@ -1,5 +1,5 @@
 class Cat < ActiveRecord::Base
-  attr_accessible :name, :user_id
+  attr_accessible :name, :user_id, :color
   has_many :appearances
   has_many :records, through: :appearances
   belongs_to :user
@@ -8,13 +8,6 @@ class Cat < ActiveRecord::Base
 
   def self.no_mag(str)
     str.gsub(/^\s*\d+\.*\d*\s*/, '')
-  end
-
-  def equalize_then_save
-    if !self.dashboard && self.day_avgs
-      self.dashboard = true 
-    end
-    self.save
   end
 
 end
