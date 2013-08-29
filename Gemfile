@@ -17,6 +17,7 @@ group :assets do
   gem 'uglifier'
   gem 'd3-rails'
   gem 'jquery-rails'
+  gem 'angularjs-rails'
 end
 
 group :test do

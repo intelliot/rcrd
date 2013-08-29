@@ -57,7 +57,6 @@ class HomeController < ApplicationController
     @display_json = @display.to_json
   end
 
-
   def welcome
     @frontpage = true
   end

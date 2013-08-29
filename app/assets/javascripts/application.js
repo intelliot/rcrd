@@ -7,16 +7,17 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3 
+//= require angular
 //= require distribution 
+//= require app 
 
-if (typeof block_data != 'undefined') {
+var block_chart = function(data) {
 
+    /* Data Sample
     var data = [
-        { col: 5, row: 1, value: 10, color: "red" },
-        { col: 4, row: 1, value: 10, color: "green" },
-        { col: 5, row: 2, value: 10, color: "blue" }
+        { col: 5, row: 1, value: 10, color: "red" }
     ];
-    var data = block_data;
+    */
 
     var colors = ["#fff","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"]; // alternatively colorbrewer.YlGnBu[9]
     var buckets = 9;

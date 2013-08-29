@@ -34,6 +34,7 @@
           <li class="<%= current 'home', 'guide' %><%= current 'home', 'stats' %><%= current 'home', 'about' %>"><a href="/guide">guide</a></li>
         </ul>
       </header>
+      <div ng-view></div>
       <%= yield %>
     </div>
   <% end %>

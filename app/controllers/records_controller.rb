@@ -6,6 +6,10 @@ class RecordsController < ApplicationController
 
   def index
     @records = current_user.records.order('target DESC').includes(:appearances).limit(40)
+    respond_to do |format|
+      format.html # Fall through to view 
+      format.json { render :json => current_user.records }
+    end
   end
 
   def distribution 
