@@ -1,14 +1,1 @@
 <%= render 'shared/recordnav' %>
-
-<!--
-<h1>Cats</h1>
-<div class="input-wrap mft mkb">
-  <input type="text" placeholder="search cats">
-</div>
--->
-
-<h2 class="mfb">Your cats</h2>
-
-<% @cats.each do |cat| %>
-  <%= render :partial => "shared/cat", :locals => {:cat => cat} %>
-<% end %>

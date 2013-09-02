@@ -1,3 +1,17 @@
+<form name="newRecordForm" ng-submit="createRecord()">
+  <div class="input-wrap">
+    <input type="text" 
+           name="raw" 
+           ng-model="newRecord.raw" 
+           placeholder="e.g. workout, swim, Masters, Koret" />
+  </div>
+  <input type="submit" value="Create new record" />
+</form>
+
 <div ng-repeat="record in records">
-  <div ng-bind="record.raw"></div>
+  <div ng-bind="record.target"></div>
+  <cat data="cat" 
+       hue="hue" 
+       ng-repeat="cat in record.cats"
+    ></cat>
 </div>

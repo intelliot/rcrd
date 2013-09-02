@@ -6,7 +6,7 @@ module ApplicationHelper
   def hue_now
     minutes = Time.now.strftime('%k').to_f * 60.0
     minutes += Time.now.strftime('%M').to_f
-    (minutes / 1440.0)  * 360.0
+    (minutes / 1440.0) * 360.0
   end
 
   def style_info(hue)

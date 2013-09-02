@@ -1,7 +1,6 @@
 class Cat < ActiveRecord::Base
   attr_accessible :name, :user_id
-  has_many :appearances
-  has_many :records, through: :appearances
+  has_many :records
   belongs_to :user
   validates_presence_of :name
   validates :name, :uniqueness => {:scope => :user_id}
