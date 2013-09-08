@@ -1,9 +1,11 @@
 class HomeController < ApplicationController
 
-  # Pages in HomeController are static and 
-  # do not require authentication
+  def index
+    render 'shared/angular' 
+  end
 
-  def index 
+  # TODO: Tighten up security on this
+  def block_chart
     @num_days = 60  
     @options = []
     @settings = current_user.settings.where('name=? OR name=?', 'dashboard', 'day_avgs').order('name ASC')
@@ -53,8 +55,7 @@ class HomeController < ApplicationController
       end
       row += 1
     end
-
-    @display_json = @display.to_json
+    render json: @display
   end
 
   def welcome
