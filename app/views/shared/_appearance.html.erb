@@ -1,0 +1,6 @@
+<% size ||= '' %>
+<a href="<%= cat_url appear.cat %>"
+   class="cat <%= size %>" 
+   style="<%= style_info(appear.record.hue) %>"
+   ><% if appear.magnitude %><i><%= appear.magnitude %></i><% end %><span
+   ><%= appear.cat.name %></span></a>

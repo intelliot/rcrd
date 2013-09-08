@@ -7,6 +7,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require d3 
+//= require distribution 
 
 $(document).ready(function(){
   $('.cat-toggle').click(function(e){

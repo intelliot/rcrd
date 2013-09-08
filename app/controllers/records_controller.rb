@@ -5,7 +5,17 @@ class RecordsController < ApplicationController
   helper ApplicationHelper 
 
   def index
-    @records = current_user.records.order('target DESC').limit(40)
+    @records = current_user.records.order('target DESC').includes(:appearances).limit(40)
+  end
+
+  def distribution 
+    @frequencies = current_user.get_list_of_cat_frequencies
+    @frequencies_arr = []
+    @frequencies.each do |k, v|
+      @frequencies_arr << {"name" => k, "times" => v}
+    end
+    @frequencies_arr.sort! { |a, b| b["times"] <=> a["times"] }
+    @frequencies = @frequencies_arr.to_json
   end
 
   def find
@@ -31,22 +41,23 @@ class RecordsController < ApplicationController
   end
 
   def show 
-    @record = current_user.records.find params[:id]  
+    @record = current_user.records.find params[:id]
   end
 
   def new
-    @record = current_user.records.new(target: current_user.current_time_zone.now)
+    @record = current_user.records.new(target: current_user.local_time.now)
     @last_7_days = current_user.records.where('target > ?', Date.today - 7.days)
   end
 
   def create      
-# @record.target = Time.now.utc.strftime('%c') # old shoddy workaround
+
+    # Parse record.raw and associate cats
     @record = current_user.records.new(params[:record])
+    @record.target = current_user.local_time.local_to_utc @record.target
+    @record.cats_from_raw.each do |raw_cat|
+      cat = @record.cats.create name: raw_cat
+    end
     if @record.save
-      puts @record.inspect
-      # Convert target back to UTC
-      @record.target = current_user.current_time_zone.local_to_utc @record.target
-      @record.save
       flash[:notice] = "Record was successfully created."
       redirect_to action: 'new'
     else        

@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
-  def new # this serves as sessions#new and user#new
-    @user = User.new
+  def new
+    redirect_to :root if current_user
   end
 
   def create
@@ -14,7 +14,6 @@ class SessionsController < ApplicationController
       redirect_to target_path
     else
       flash[:notice] = "There was a problem with your email or password."
-      @user = User.new
       render action: :new
     end
   end

@@ -9,10 +9,17 @@ module ApplicationHelper
     (minutes / 1440.0)  * 360.0
   end
 
-  def style_info(hue)
-    str = "background-color: hsl(#{hue}, 65%, 48%);"
-    str += "border-bottom: solid 2px hsl(#{hue}, 80%, 20%);"
-    str += "text-shadow: 0 -1px 1px hsl(#{hue}, 30%, 0%);"
+  def style_info(color)
+    if color.is_a? Numeric # is hue value
+      str = "background-color: hsl(#{color}, 65%, 48%);"
+      str += "border-bottom: solid 2px hsl(#{color}, 80%, 20%);"
+      str += "text-shadow: 0 -1px 1px hsl(#{color}, 30%, 0%);"
+    else
+      color = color[1..-1] if color[0] == "#"
+      str = "background-color: ##{color};"
+      str += "border-bottom: solid 2px rgba(1, 1, 1, 0.5);"
+      str += "text-shadow: 0 -1px 1px rgba(1, 1, 1, 0.5);"
+    end
   end
 
   def new_style_info(color)
@@ -35,6 +42,7 @@ module ApplicationHelper
     "background-color: hsl(#{hue_now}, 65%, 48%);"
   end
 
+  # Moving this logic to Cat model
   def mag(str)
     str[/^\s*\d+\.*\d*/]  
   end

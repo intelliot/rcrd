@@ -1,14 +1,40 @@
 <p id="notice"><%= notice %></p>
 
-<div class="margin-y">
+<div class="mfy">
   <div class="margin-bottom-small"><%= @record.local_target.strftime('%l:%M%P') %></div>
-  <% @record.cats_from_raw.each do |cat| %>
-    <%= render partial: "shared/cat", locals: {cat: cat, hue: @record.hue, size: "large"} %>
+  <% @record.appearances.each do |appear| %>
+    <%= render partial: "shared/appearance", locals: {appear: appear, size: "large"} %>
   <% end %>
 </div>
 
-<div class="margin-y clearfix">
-  <p>the form is UTC but the time is displayed in the correct zone, please bear with me</p>
+<div class="mfy clearfix">
+  <%= form_for @record do |f| %>
+    <% if @record.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@record.errors.count, "error") %> prohibited this record from being saved:</h2>
+
+        <ul>
+        <% @record.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-wrap">
+      <%= f.text_field :raw, {placeholder: "e.g. workout, swim, Masters, Koret", id: "cat-input"} %>
+    </div>
+    <div class="field">
+      (UTC FOR NOW) -> <%= f.datetime_select :target %>
+    </div>
+    <div class="input-wrap mfy">
+      <%= f.label :time_zone %>
+      <%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
+    </div>
+    <%= f.submit %>
+  <% end %>
+</div>
+
   <%= render 'form' %>
   <%= link_to "delete", @record, method: :delete, confirm: "Sure?" %>
 </div>

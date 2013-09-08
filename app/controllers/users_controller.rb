@@ -1,20 +1,8 @@
 class UsersController < ApplicationController
 
-  def edit
-    @user = current_user
-    @cats = current_user.cats.order('name ASC')
-  end
-
-  def update
-    @user = User.find params[:id] 
-    puts @user.inspect
-    if @user.update_attributes(params[:user])
-      flash[:notice] = "User was successfully updated."
-      redirect_to :settings
-    else
-      flash[:notice] = "Sorry dude, there was a problem"
-      redirect_to :settings
-    end
+  def new 
+    redirect_to :root if current_user
+    @user = User.new 
   end
 
   def create
@@ -26,7 +14,22 @@ class UsersController < ApplicationController
       cookies.permanent.signed[:user_id] = @user.id
       redirect_to root_url, notice: "Signed up!"
     else
-      render template: "sessions/new"
+      render action: :new
+    end
+  end
+
+  def edit
+    @user = current_user
+  end
+
+  def update
+    @user = User.find params[:id] 
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "User was successfully updated."
+      redirect_to :settings
+    else
+      flash[:notice] = "Sorry dude, there was a problem"
+      redirect_to :settings
     end
   end
 

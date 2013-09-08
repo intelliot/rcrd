@@ -1,5 +1,6 @@
-<% size ||= 'foo' %>
-<a href="/cats/<%= tokenize(cat) %>" 
+<% size ||= '' %>
+<% hue ||= cat.color || hue_now %>
+<a href="<%= cat_url cat %>"
    class="cat <%= size %>" 
    style="<%= style_info(hue) %>"
-  ><% if mag(cat) %><i><%= mag(cat) %></i><% end %><span><%= no_mag(cat) %></span></a>
+  ><span><%= cat.name %></span></a>

@@ -6,6 +6,12 @@ describe User do
     @user = User.create!(email: "whatever@jeff.is", password: "test", password_confirmation: "test") 
   end
 
+  describe 'local_time' do
+    it "Should output PST if user hasn't specified TZ yet" do
+      expect(@user.local_time).to eq(ActiveSupport::TimeZone.new("Pacific Time (US & Canada)"))
+    end
+  end
+
   describe "self.authenticate" do
     it "works when a user exists" do
       expect(User.authenticate("whatever@jeff.is", "test")).to eq(@user)
@@ -19,23 +25,6 @@ describe User do
     it "encrypts before save" do
       @user.password_hash.should_not eq(hash)
     end
-  end
-
-  describe "current_time_zone" do
-
-    it "defaults to Pacific Time" do
-      expect(@user.current_time_zone).to eq(ActiveSupport::TimeZone.new("Pacific Time (US & Canada)"))
-    end
-
-    it "is correct under normal conditions" do
-      tz = @user.records.create!(raw: "time zone, Tokyo", target: Time.now - 5.minutes)
-      one = @user.records.create!(raw: "workout, swim, 3200 yards", target: Time.now)
-      expect(@user.current_time_zone).to eq(ActiveSupport::TimeZone.new("Tokyo"))
-    end
-
-  end
-
-  describe "default_time_zone" do
   end
 
   describe "get_trending_cats" do
