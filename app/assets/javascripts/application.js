@@ -8,25 +8,41 @@
 //= require jquery_ujs
 //= require d3 
 
-if (typeof block_data != 'undefined') {
+$(document).ready(function(){
+  $('.cat-toggle').click(function(e){
 
-    var data = [
-        { col: 5, row: 1, value: 10, color: "red" },
-        { col: 4, row: 1, value: 10, color: "green" },
-        { col: 5, row: 2, value: 10, color: "blue" }
-    ];
+    var $self = $(this);
+    var params = {
+      id: $self.data('id'),
+      option: $self.data('option')
+    };
+    if (params.id.length == 0 || params.option.length == 0) return;
+
+    $.ajax({
+        url: '/cats/'+params.id,
+        type: 'PUT',
+        data: params,
+        success: function(result) {
+          window.location = '';
+        }
+    });
+  });
+});
+
+if (typeof block_data != 'undefined' && block_data.length > 0) {
+
     var data = block_data;
 
     var colors = ["#fff","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"]; // alternatively colorbrewer.YlGnBu[9]
     var buckets = 9;
 
     var gridSize = 10;
-
+console.log(data);
     var viewWidth = 600;
-    var viewHeight = d3.max(data, function (d) { return d.row; }) * gridSize;
+    var viewHeight = d3.max(data, function(d) { console.log(d.row); return d.row; }) * gridSize;
 
     var colorScale = d3.scale.quantile()
-      .domain([0, buckets - 1, d3.max(data, function (d) { return d.value; })])
+      .domain([0, buckets - 1, d3.max(data, function(d) { return d.value; })])
       .range(colors);
 
     var svg = d3.select("#block-chart").append("svg")
