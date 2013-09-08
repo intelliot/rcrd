@@ -22,7 +22,8 @@ class CatsController < ApplicationController
   end
 
   def edit 
-    @cat = current_user.cats.find params[:id]
+    @name = params[:id]
+    @cat = current_user.cats.find_or_create_by_name @name
   end
 
   def update

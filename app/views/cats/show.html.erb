@@ -12,7 +12,7 @@
 </div>
 
 <div class="mfb pf bg-grey">
-  <%= link_to 'Edit Cat Settings', edit_cat_path(@cat) %>
+  <%= link_to 'Edit Cat Settings', '/cats/'+@cat.name+'/edit' %>
 </div>
 
 <%= render partial: "shared/records", locals: {records: @records} %>
