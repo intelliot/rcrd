@@ -20,7 +20,7 @@ Nassau::Application.routes.draw do
   get 'records/find' => 'records#find', as: 'find'
   get 'records/distribution' => 'records#distribution'
 
-  get 'charts/blocks' => 'home#block_chart'
+  get 'charts/blocks' => 'charts#blocks'
 
   resources :cats
   resources :records

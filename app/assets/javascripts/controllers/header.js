@@ -9,9 +9,6 @@ function($scope, $location, $rootScope) {
     'records': { 
         'pattern': /records/i
     },
-    'cats': { 
-        'pattern': /cats/i
-    },
     'settings': { 
         'pattern': /settings/i
     },

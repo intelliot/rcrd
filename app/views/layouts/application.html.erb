@@ -24,7 +24,6 @@
           <% if current_user %>
             <li ng-class="links.dashboard.cur"><a href="/">dashboard</a></li>
             <li ng-class="links.records.cur"><a href="/records">records</a></li>
-            <li ng-class="links.cats.cur"><a href="/cats">cats</a></li>
             <li ng-class="links.settings.cur"><a href="/settings">settings</a></li>
           <% else %>
             <li class="<%= current 'home', 'welcome' %>"><a href="/">&laquo; welcome</a></li>
