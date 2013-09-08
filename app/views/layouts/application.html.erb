@@ -23,8 +23,8 @@
         <ul>
           <% if current_user %>
             <li class="<%= current 'home', 'index' %><%= current 'home', 'welcome' %>"><a href="/">dashboard</a></li>
-            <li class="<%= current 'records', 'new' %>"><a href="/records/new">add</a></li>
             <li class="<%= current 'records', 'index' %>"><a href="/records">records</a></li>
+            <li><a href="/cats">cats</a></li>
             <li class="<%= current 'users', 'edit' %>"><a href="/settings">settings</a></li>
           <% else %>
             <li class="<%= current 'home', 'welcome' %>"><a href="/">&laquo; welcome</a></li>
@@ -34,6 +34,7 @@
           <li class="<%= current 'home', 'guide' %><%= current 'home', 'stats' %><%= current 'home', 'about' %>"><a href="/guide">guide</a></li>
         </ul>
       </header>
+      <div ng-view></div>
       <%= yield %>
     </div>
   <% end %>

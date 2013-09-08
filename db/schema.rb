@@ -22,12 +22,6 @@ ActiveRecord::Schema.define(:version => 20130820063355) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "categories", :force => true do |t|
-    t.text     "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "cats", :force => true do |t|
     t.string   "name"
     t.integer  "user_id"
@@ -36,29 +30,6 @@ ActiveRecord::Schema.define(:version => 20130820063355) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
     t.string   "color"
-  end
-
-  create_table "cats_records", :id => false, :force => true do |t|
-    t.integer  "cat_id"
-    t.integer  "record_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "evil_wizards", :force => true do |t|
-    t.integer  "cat_id"
-    t.integer  "magnitude"
-    t.integer  "karma"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "karmas", :force => true do |t|
-    t.string   "name"
-    t.decimal  "points",     :precision => 8, :scale => 2
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "records", :force => true do |t|
@@ -80,14 +51,6 @@ ActiveRecord::Schema.define(:version => 20130820063355) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "sorcerers", :force => true do |t|
-    t.integer  "cat_id"
-    t.integer  "magnitude"
-    t.integer  "karma"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "users", :force => true do |t|
     t.string   "email"
     t.datetime "created_at"
@@ -96,14 +59,6 @@ ActiveRecord::Schema.define(:version => 20130820063355) do
     t.string   "password_hash"
     t.string   "password_salt"
     t.string   "time_zone",     :default => "Pacific Time (US & Canada)", :null => false
-  end
-
-  create_table "wizards", :force => true do |t|
-    t.integer  "cat_id"
-    t.integer  "magnitude"
-    t.integer  "karma"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
 end

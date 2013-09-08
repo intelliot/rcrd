@@ -1,0 +1,36 @@
+<h1>Guide</h1>
+<%= render 'shared/guidenav' %>
+
+<section class="mkb">
+  <h1>How rcrd works</h1>
+</section>
+
+<section class="mhb">
+  <h2>Cats</h2>
+  <p class="mlb">Cats, short for <strong>categories</strong>, are things I want to track. Cats are separated by commas (white space doesn't matter). Many cats make up one <strong>record</strong>.</p> 
+  <p class="mlb">For example, I record every time I get a haircut. After I walk out of the barber shop, I'll type something like this:</p>
+  <p class="sample mlb">haircut, Joe's Barber Shop</p>
+  <p>Which is displayed like this:</p>
+  <div>
+    <%= render partial: "shared/cat", locals: {cat: "haircut", hue: hue_now} %>
+    <%= render partial: "shared/cat", locals: {cat: "Joe's Barber Shop", hue: hue_now} %>
+  </div>
+</section>
+
+<section class="mhb">
+  <h2>Magnitudes</h2>
+  <p>Numbers before a cat will not be interpreted as the cat's name. Instead, they will be stored along with the cat.</p>
+  <p class="sample mlb">workout, run, 5.3 miles, Presidio</p>
+  <div>
+    <%= render partial: "shared/cat", locals: {cat: "workout", hue: hue_now} %>
+    <%= render partial: "shared/cat", locals: {cat: "run", hue: hue_now} %>
+    <%= render partial: "shared/cat", locals: {cat: "5.3 miles", hue: hue_now} %>
+    <%= render partial: "shared/cat", locals: {cat: "Presidio", hue: hue_now} %>
+  </div>
+  <p>Clicking on '5.3 miles' will show you records with 'mile' cats.</p>
+</section>
+
+<section class="mhb">
+  <h2>Time zones</h2>
+  <p>Your new records are assigned to the time zone specified in your <%= link_to 'settings', :settings %></p>
+</section>
