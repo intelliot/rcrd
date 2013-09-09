@@ -12,6 +12,13 @@ function($http, Cat) {
     });
   };
 
+  Record.save = function(params) {
+    var url = '/records/'+params.id+'.json';
+    return $http.put(url, params).then(function(res) {
+      return res.data;
+    });
+  };
+
   Record.find = function(id) {
     if (!id) return;
     var url = '/records/'+id+'.json';

@@ -84,11 +84,9 @@ class RecordsController < ApplicationController
     @record = Record.find(params[:id])
 
     if @record.update_attributes(params[:record])
-      flash[:notice] = "Record was successfully updated."
-      redirect_to @record
+      render json: 'success'
     else
-      flash[:notice] = "Record was successfully updated."
-      redirect_to @record
+      render json: 'error'
     end
   end
 

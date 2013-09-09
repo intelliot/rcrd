@@ -11,6 +11,12 @@ function($scope, Record, Cat, $location, $routeParams) {
     });
   };
 
+  $scope.saveRecord = function() {
+    Record.save($scope.record).then(function() {
+      $scope.loadRecord();
+    });
+  };
+
   // On load
 
   $scope.loadRecord();
