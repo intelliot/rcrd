@@ -15,8 +15,12 @@ function($routeProvider, $locationProvider) {
         controller: 'frontPageCtrl'
     }).
     when('/records', {
-        templateUrl: '/views/records.html',
+        templateUrl: '/views/records/index.html',
         controller: 'recordsCtrl'
+    }).
+    when('/records/:recordID', {
+        templateUrl: '/views/records/show.html',
+        controller: 'recordsShowCtrl'
     }).
     when('/records/new', {
         templateUrl: '/views/test.html',

@@ -1,0 +1,21 @@
+<form name="newRecordForm" 
+      ng-submit="createRecord()"
+      class="mib">
+  <div class="input-wrap">
+    <input type="text" 
+           name="raw" 
+           ng-model="newRecord.raw" 
+           placeholder="e.g. workout, swim, Masters, Koret" />
+  </div>
+  <input type="submit" value="Create new record" />
+</form>
+
+<div ng-repeat="record in records"
+     class="mfb">
+  <div ng-bind="record.target|date:'medium'"
+       class="small grey mcb click"
+       ng-click="goToRecord()"></div>
+  <cat ng-repeat="cat_name in record.cats"
+       raw="cat_name" 
+       hue="record.hue"></cat>
+</div>

@@ -12,11 +12,9 @@ function($http) {
   };
 
   User.save = function(params) {
-    console.log(params);
-    return $http.put('/users/'+params.id+'.json', params)
-                .then(function(response) {
-      console.log(response);
-      return response.data;
+    var url = '/users/'+params.id+'.json';
+    return $http.put(url, params).then(function(res) {
+      return res.data;
     });
   };
 

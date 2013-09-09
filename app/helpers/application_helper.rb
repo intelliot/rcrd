@@ -42,7 +42,6 @@ module ApplicationHelper
     "background-color: hsl(#{hue_now}, 65%, 48%);"
   end
 
-  # Moving this logic to Cat model
   def mag(str)
     str[/^\s*\d+\.*\d*/]  
   end

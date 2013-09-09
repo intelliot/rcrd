@@ -1,41 +1,29 @@
 app.controller('recordsCtrl', 
-['$scope', 'Record', 'Cat',      
-function($scope, Record, Cat) {
+['$scope', 'Record', 'Cat', '$location',      
+function($scope, Record, Cat, $location) {
 
   $scope.records = [];
   $scope.newRecord = {};
   $scope.hue = 100;
 
-  $scope.createRecord = function() {
+  $scope.goToRecord = function() {
+    if (!this.record) return;
+    $location.path('/records/'+this.record.id);
+  };
 
-    // Great
+  $scope.createRecord = function() {
     Record.new($scope.newRecord);    
     $scope.loadRecords();
     $scope.newRecord = {};
   };
 
-  $scope.catsFromRaw = function(raw) {
-    // TODO: Improve
-    var cats = [];
-    raw.split(',').forEach(function(catName) {
-      // If !Cat.find({name: catName})
-      cats.push({name: catName, id: 321});
-    }); 
-    return cats;
-  };
-
   $scope.loadRecords = function() {
-    Record.all(
-      function(records) { // Success
-        $scope.records = records;
-        $scope.records.map(function(record) {
-          record.cats = $scope.catsFromRaw(record.raw);
-        });
-        console.log($scope.records);
-      },
-      function() { // Error
+    Record.all().then(function(data) {
+      $scope.records = data;
     });
   };
+
+  // On load
 
   $scope.loadRecords();
 

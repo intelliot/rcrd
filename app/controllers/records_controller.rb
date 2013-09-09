@@ -6,6 +6,10 @@ class RecordsController < ApplicationController
 
   def index
     @records = current_user.records.order('target DESC').limit(40)
+    @records.map do |r| 
+      r[:hue] = r.hue 
+      r[:cats] = r.cats_from_raw 
+    end
     respond_to do |format|
       format.html # Fall through to view 
       format.json { render :json => @records }
@@ -45,7 +49,12 @@ class RecordsController < ApplicationController
   end
 
   def show 
-    @record = current_user.records.find params[:id]
+    respond_to do |format|
+      format.html { render 'shared/angular' }
+      format.json { 
+        render :json => current_user.records.find(params[:id])
+      }
+    end
   end
 
   def new

@@ -31,5 +31,20 @@ function($http) {
   Cat.find = function(options) {
   }; 
 
+  Cat.mag = function(str) {
+    var match = str.match(/^\s*\d+\.*\d*/);
+    return match ? match[0] : "";
+  };
+
+  Cat.noMag = function(str) {
+    return str.replace(/^\s*\d+\.*\d*\s*/g,"");
+  };
+
+  Cat.catsFromRaw = function(raw) {
+    // TODO: Improve splitting
+    return raw.split(',');
+  };
+
+
   return Cat;
 }]);

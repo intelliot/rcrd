@@ -1,7 +1,6 @@
-<h1></h1>
-
-<div ng-repeat="cat in cats"
-     class="border-bottom">
-  <h2 ng-bind="cat.name"></h2>
-  <!-- info? -->
-</div>
+<div ng-bind="record.target|date:'medium'"
+     class="small grey mcb click"
+     ng-click="goToRecord()"></div>
+<cat ng-repeat="cat_name in record.cats"
+     raw="cat_name" 
+     hue="hue"></cat>

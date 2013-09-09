@@ -5,20 +5,19 @@ function($http, Cat) {
   var Record = {};
   var _records = [];
 
-  // Will call callback with params (success?, [records])
-  Record.all = function(success, error) {
-      if (_records.length != 0) {
-          return success(_records);
-      }
-      $http({
-          url: '/records.json',
-          method: 'GET'
-      }).success(function(data) {
-          _records = data;
-          success(_records);
-      }).error(function(data) {
-          error();
-      });
+  Record.all = function() {
+    var url = '/records.json';
+    return $http.get(url).then(function(res) {
+      return res.data;
+    });
+  };
+
+  Record.find = function(id) {
+    if (!id) return;
+    var url = '/records/'+id+'.json';
+    return $http.get(url).then(function(res) {
+      return res.data;
+    });
   };
 
   Record.new = function(newRecord) {
