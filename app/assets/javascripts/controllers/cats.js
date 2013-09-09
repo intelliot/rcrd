@@ -6,6 +6,8 @@ function($scope, Cat) {
   $scope.hue = 0;
   $scope.intervalID;
 
+  // TODO: Break this out into service
+
   $scope.regenerateHue = function() {
     var now = new Date();
     var minutes = (now.getMinutes())

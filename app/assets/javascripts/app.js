@@ -30,7 +30,7 @@ function($routeProvider, $locationProvider) {
         templateUrl: '/views/cats.html',
         controller: 'catsCtrl'
     }).
-    when('/cats/:catID', {
+    when('/cats/:catName', {
         templateUrl: '/views/cats/show.html',
         controller: 'catShowCtrl'
     }).

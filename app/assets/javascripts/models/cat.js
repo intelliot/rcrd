@@ -37,6 +37,7 @@ function($http) {
   };
 
   Cat.noMag = function(str) {
+    if (!str) return '';
     return str.replace(/^\s*\d+\.*\d*\s*/g,"");
   };
 
