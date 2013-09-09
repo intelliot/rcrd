@@ -1,9 +1,4 @@
-<h1>Guide</h1>
-<%= render 'shared/guidenav' %>
-
-<section class="mkb">
-  <h1>How rcrd works</h1>
-</section>
+<h1 class="mfb">How rcrd works</h1>
 
 <section class="mhb">
   <h2>Cats</h2>
@@ -12,8 +7,8 @@
   <p class="sample mlb">haircut, Joe's Barber Shop</p>
   <p>Which is displayed like this:</p>
   <div>
-    <%= render partial: "shared/cat", locals: {cat: "haircut", hue: hue_now} %>
-    <%= render partial: "shared/cat", locals: {cat: "Joe's Barber Shop", hue: hue_now} %>
+    <cat raw="'lololol'" hue="200"></cat>
+    <cat raw="'Joe\'s Barber Shop'" hue="200"></cat>
   </div>
 </section>
 
@@ -22,15 +17,15 @@
   <p>Numbers before a cat will not be interpreted as the cat's name. Instead, they will be stored along with the cat.</p>
   <p class="sample mlb">workout, run, 5.3 miles, Presidio</p>
   <div>
-    <%= render partial: "shared/cat", locals: {cat: "workout", hue: hue_now} %>
-    <%= render partial: "shared/cat", locals: {cat: "run", hue: hue_now} %>
-    <%= render partial: "shared/cat", locals: {cat: "5.3 miles", hue: hue_now} %>
-    <%= render partial: "shared/cat", locals: {cat: "Presidio", hue: hue_now} %>
+    <cat raw="'workout'" hue="200"></cat>
+    <cat raw="'run'" hue="200"></cat>
+    <cat raw="'5.3 miles'" hue="200"></cat>
+    <cat raw="'Presidio'" hue="200"></cat>
   </div>
   <p>Clicking on '5.3 miles' will show you records with 'mile' cats.</p>
 </section>
 
 <section class="mhb">
   <h2>Time zones</h2>
-  <p>Your new records are assigned to the time zone specified in your <%= link_to 'settings', :settings %></p>
+  <p>Your new records are assigned to the time zone specified in your <a href="/settings">settings</a>.</p>
 </section>
