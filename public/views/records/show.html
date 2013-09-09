@@ -1,6 +1,24 @@
 <div ng-bind="record.target|date:'medium'"
-     class="small grey mcb click"
+     class="small grey mcb"
      ng-click="goToRecord()"></div>
 <cat ng-repeat="cat_name in record.cats"
      raw="cat_name" 
-     hue="hue"></cat>
+     hue="record.hue"></cat>
+
+<form name="recordEditForm" 
+      class="mkt"
+      ng-submit="saveRecord()">
+
+  <div class="input-wrap mfb">
+    <label for="raw">Raw record</label>
+    <input type="text"
+           name="raw"
+           ng-model="record.raw" />
+  </div>
+
+  <div class="mfb">
+    <input type="submit" 
+           value="Save Record" />
+  </div>
+
+</form>

@@ -20,6 +20,7 @@ class CatsController < ApplicationController
   end
 
   def show
+=begin
     @name = params[:id]
     @cat = current_user.cats.find_or_create_by_name @name
     if params[:all]
@@ -30,6 +31,13 @@ class CatsController < ApplicationController
 
     @trending_cats = current_user.get_trending_cats[0..7]
     @trending_cats.delete @name
+=end
+    respond_to do |format|
+      format.html { render 'shared/angular' }
+      format.json { 
+        render :json => current_user.cats.find(params[:id])
+      }
+    end
   end
 
   def edit 

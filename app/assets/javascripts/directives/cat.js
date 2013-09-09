@@ -1,4 +1,4 @@
-app.directive('cat', function() {
+app.directive('cat', ['Cat', function(Cat) {
     return {
         restrict: 'E',
         transclude: false,
@@ -7,8 +7,11 @@ app.directive('cat', function() {
           hue: '=',
           hex: '='
         },
+        controller: function($scope, $element, $attrs) {
+          $scope.sansMag = Cat.noMag($scope.raw); 
+        },
         template:
-          '<a href="/cats/{{raw}}" '+
+          '<a href="/cats/{{sansMag}}" '+
              'class="cat"'+ 
              'style="'+
                'background-color: hsl({{hue}}, 65%, 48%);'+
@@ -17,4 +20,4 @@ app.directive('cat', function() {
              '"><span>{{raw}}</span></a>',
         replace: true
     };
-});
+}]);

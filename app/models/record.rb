@@ -3,6 +3,18 @@ class Record < ActiveRecord::Base
   attr_accessible :target, :raw, :time_zone
   default_scope order 'target DESC'
   validates_presence_of :raw, :user_id, :target
+  attr_writer :hue
+  attr_writer :cats
+
+  def sanitize
+    {
+      id: self.id,
+      target: self.target,
+      hue: self.hue,
+      cats: self.cats_from_raw,
+      raw: self.raw
+    }
+  end 
 
   def local_target
     zone = ActiveSupport::TimeZone.new(self.time_zone)

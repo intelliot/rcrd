@@ -20,7 +20,7 @@ function($routeProvider, $locationProvider) {
     }).
     when('/records/:recordID', {
         templateUrl: '/views/records/show.html',
-        controller: 'recordsShowCtrl'
+        controller: 'recordShowCtrl'
     }).
     when('/records/new', {
         templateUrl: '/views/test.html',

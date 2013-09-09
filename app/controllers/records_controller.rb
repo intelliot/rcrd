@@ -5,14 +5,14 @@ class RecordsController < ApplicationController
   helper ApplicationHelper 
 
   def index
-    @records = current_user.records.order('target DESC').limit(40)
-    @records.map do |r| 
-      r[:hue] = r.hue 
-      r[:cats] = r.cats_from_raw 
-    end
     respond_to do |format|
-      format.html # Fall through to view 
-      format.json { render :json => @records }
+      format.html { render 'shared/angular' }
+      format.json { 
+        @records = current_user.records.limit(40)
+        @good_records = []
+        @records.each {|r| @good_records.push r.sanitize }
+        render :json => @good_records 
+      }
     end
   end
 
@@ -52,7 +52,8 @@ class RecordsController < ApplicationController
     respond_to do |format|
       format.html { render 'shared/angular' }
       format.json { 
-        render :json => current_user.records.find(params[:id])
+        @record = current_user.records.find(params[:id])
+        render :json => @record.sanitize 
       }
     end
   end
