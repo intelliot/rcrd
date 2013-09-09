@@ -1,0 +1,25 @@
+<div class="mkb clearfix">
+  <a href="/logout" class="right">Log out</a>
+</div>
+
+<h1 class="mfb">Settings</h1>
+
+<form name="userEditForm">
+
+  <div class="input-wrap mkb">
+    <label for="email">Email</label>
+    <input type="email" 
+           name="email" 
+           ng-model="user.email" />
+  </div>
+
+    <div class="input-wrap mfb">
+      <%= f.label :time_zone %>
+      <%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
+    </div>
+
+  <div class="mkb">
+    <input type="submit" ng-submit="saveUser()" value="Save Settings" />
+  </div>
+
+</form>

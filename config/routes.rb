@@ -14,13 +14,14 @@ Nassau::Application.routes.draw do
   get 'settings' => 'users#edit', as: 'settings'
   get 'about' => 'home#about', as: 'about'
   get 'stats' => 'home#stats', as: 'stats'
-  get 'log-in' => 'sessions#new', as: 'login'
-  get 'sign-up' => 'users#new', as: 'signup'
+  get 'login' => 'sessions#new', as: 'login'
+  get 'signup' => 'users#new', as: 'signup'
   get 'logout' => 'sessions#destroy', as: 'logout'
   get 'records/find' => 'records#find', as: 'find'
   get 'records/distribution' => 'records#distribution'
 
   get 'charts/blocks' => 'charts#blocks'
+  get 'users/current' => 'users#current'
 
   resources :cats
   resources :records

@@ -30,6 +30,10 @@ function($routeProvider, $locationProvider) {
         templateUrl: '/views/cats/show.html',
         controller: 'catShowCtrl'
     }).
+    when('/settings', {
+        templateUrl: '/views/users/edit.html',
+        controller: 'userEditCtrl'
+    }).
     when('/guide', {
         templateUrl: '/views/guide/index.html',
         controller: 'guideCtrl'

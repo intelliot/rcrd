@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
 
+  def current 
+    @output_user = {
+      email:  current_user.email,
+      time_zone: current_user.time_zone
+    } 
+    render json: @output_user 
+  end
+
   def new 
     redirect_to :root if current_user
     @user = User.new 
@@ -19,7 +27,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = current_user
+    render 'shared/angular'
   end
 
   def update
