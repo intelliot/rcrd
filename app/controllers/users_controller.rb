@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 
   def current 
     @output_user = {
+      id: current_user.id,
       email:  current_user.email,
       time_zone: current_user.time_zone
     } 
@@ -33,11 +34,9 @@ class UsersController < ApplicationController
   def update
     @user = User.find params[:id] 
     if @user.update_attributes(params[:user])
-      flash[:notice] = "User was successfully updated."
-      redirect_to :settings
+      render json: 'success'
     else
-      flash[:notice] = "Sorry dude, there was a problem"
-      redirect_to :settings
+      render json: 'error'
     end
   end
 

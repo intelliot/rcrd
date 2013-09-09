@@ -1,5 +1,6 @@
 // Attempting to have a modular CSS base style framework like BH
 
+$link_color: #015fc3;
 
 // ELEMENTS
 table { width: 100%; }
@@ -8,10 +9,9 @@ h1 { font-size: 1.6em; }
 h2 { font-size: 1.2em; }
 p { margin-bottom: 0.6em; line-height: 1.5em; }
 a {
-  $color: #015fc3;
-  color: $color;
+  color: $link_color;
   &:hover {
-    color: $color - #202020;
+    color: $link_color - #202020;
   }
 }
 ul li {
@@ -53,6 +53,19 @@ ul li {
 // Layout
 .left { float: left; }
 .right { float: right; }
+
+// Links
+.click {
+  &:hover {
+    cursor: pointer;
+  }
+  &.blue {
+    color: $link_color;
+    &:hover {
+      color: $link_color - #202020;
+    }
+  }
+}
 
 
 .input-wrap {

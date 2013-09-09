@@ -1,10 +1,10 @@
-<div class="mkb clearfix">
+<div class="clearfix">
   <a href="/logout" class="right">Log out</a>
 </div>
 
 <h1 class="mfb">Settings</h1>
 
-<form name="userEditForm">
+<form name="userEditForm" ng-submit="saveUser()" class="mfb">
 
   <div class="input-wrap mkb">
     <label for="email">Email</label>
@@ -13,13 +13,22 @@
            ng-model="user.email" />
   </div>
 
-    <div class="input-wrap mfb">
-      <%= f.label :time_zone %>
-      <%= f.collection_select :time_zone, ActiveSupport::TimeZone.us_zones, :name, :to_s %>
-    </div>
+  <div class="input-wrap mkb">
+    <label for="time_zone">Default Time Zone</label>
+    <div class="small mdb grey">This is the time zone used to create new records.</div>
+    <select ng-model="user.time_zone"
+            ng-options="value.name as value.name for value in timeZonesUS">
+    </select>
+  </div>
+
+  <div class="bg-grey mkb pf" ng-show="timeZoneNow">
+    <p>It looks like your rcrd time zone is <strong ng-bind="user.time_zone"></strong>, but your computer's local time zone is set to <strong ng-bind="timeZoneNow"></strong>.</p>
+    <p class="click blue" ng-click="setTimeZoneToCurrent()">Set time zone to <strong ng-bind="timeZoneNow"></strong></p> 
+  </div> 
 
   <div class="mkb">
-    <input type="submit" ng-submit="saveUser()" value="Save Settings" />
+    <input type="submit" value="Save Settings" />
   </div>
 
 </form>
+
