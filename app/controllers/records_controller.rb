@@ -66,7 +66,8 @@ class RecordsController < ApplicationController
   def create      
     @record = current_user.records.new(params[:record])
     puts @record.inspect
-    @record.target = current_user.local_time.local_to_utc @record.target
+    @record.target = Time.now.utc
+    #@record.target = current_user.local_time.local_to_utc @record.target
     if @record.save
       render json: 'success'
     else        

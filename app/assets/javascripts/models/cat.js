@@ -31,6 +31,14 @@ function($http) {
   Cat.find = function(options) {
   }; 
 
+  Cat.fetchRecords = function(catName) {
+    var url = '/cats/'+catName+'/records.json';
+    return $http.get(url).then(function(res) {
+      console.log(res);
+      return res.data;
+    });
+  }; 
+
   Cat.mag = function(str) {
     var match = str.match(/^\s*\d+\.*\d*/);
     return match ? match[0] : "";

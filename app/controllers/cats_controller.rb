@@ -20,24 +20,23 @@ class CatsController < ApplicationController
   end
 
   def show
-=begin
-    @name = params[:id]
-    @cat = current_user.cats.find_or_create_by_name @name
-    if params[:all]
-      @records = current_user.records.where("raw ILIKE ?", '%'+@name+'%')
-    else
-      @records = current_user.records.where("raw ILIKE ?", '%'+@name+'%').limit(50)
-    end
-
-    @trending_cats = current_user.get_trending_cats[0..7]
-    @trending_cats.delete @name
-=end
     respond_to do |format|
       format.html { render 'shared/angular' }
       format.json { 
         render :json => current_user.cats.find(params[:id])
       }
     end
+  end
+
+  def records
+    name = params[:cat_name].chomp.singularize
+    # TODO: Look up any aliases, if one exists, 
+    # start process again with that alias
+    # Singularize cat
+    @records = []
+    proto_records = current_user.records.where("raw ~ ?", "[\s\d\.]*#{name}[\s]*,|,[\s\d\.]*#{name}[\s]*|,[\s\d\.]*#{name}[\s]*,")
+    proto_records.each {|r| @records.push r.sanitize }
+    render :json => @records
   end
 
   def edit 

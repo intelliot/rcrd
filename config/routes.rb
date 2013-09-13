@@ -25,6 +25,7 @@ Nassau::Application.routes.draw do
   get 'users/current' => 'users#current'
 
   resources :cats
+  get 'cats/:cat_name/records' => 'cats#records'
   resources :records
   resources :sessions
   resources :users

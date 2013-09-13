@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     if user && user.password_hash == BCrypt::Engine.hash_secret(password, user.password_salt)
       return user
     else
-      return false
+      return nil 
     end
   end
 

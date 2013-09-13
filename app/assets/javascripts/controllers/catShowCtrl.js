@@ -1,12 +1,16 @@
 app.controller('catShowCtrl', 
-['$scope', 'Cat', '$routeParams',     
-function($scope, Cat, $routeParams) {
+['$scope', 'Cat', '$routeParams', 'Helper',     
+function($scope, Cat, $routeParams, Helper) {
 
   $scope.name = $routeParams.catName;
+  $scope.hue = Helper.currentHue; 
+  $scope.records = [];
 
-  // TODO: Use Color service (Color.currentHue)
-  $scope.hue = 100; 
+  Cat.fetchRecords($scope.name).then(function(data) {
+    $scope.records = data;
+  });
 
+/*
   Cat.all(function(cats){
     var cat = null;
     cats.forEach(function(iCat) {
@@ -15,5 +19,6 @@ function($scope, Cat, $routeParams) {
       }
     }); 
   });
+*/
 
 }]);
