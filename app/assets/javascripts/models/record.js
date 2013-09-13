@@ -27,9 +27,13 @@ function($http, Cat) {
     });
   };
 
-  Record.create = function(params) {
+  Record.create = function(record) {
     var url = '/records.json';
-    return $http.put(url, {record: params}).then(function(res) {
+
+    // TODO: Form record.year, record.month, etc.
+    // into one coherent timestamp
+
+    return $http.post(url, {record: record}).then(function(res) {
       console.log(res);
       return res.data;
     });

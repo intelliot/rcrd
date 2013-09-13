@@ -11,6 +11,12 @@
     <span ng-bind="user.time_zone"></span>
     <a href="/settings">change</a>
   </div>
+  <div class="pcy">
+    <select name="year"
+            ng-model="newRecord.year"
+            ng-options="d for d in yearRange">
+    </select>
+  </div>
   <input type="submit" value="Create new record" />
 </form>
 

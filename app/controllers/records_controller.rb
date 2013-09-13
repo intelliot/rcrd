@@ -64,19 +64,13 @@ class RecordsController < ApplicationController
   end
 
   def create      
-
-    # Parse record.raw and associate cats
     @record = current_user.records.new(params[:record])
+    puts @record.inspect
     @record.target = current_user.local_time.local_to_utc @record.target
-    @record.cats_from_raw.each do |raw_cat|
-      cat = @record.cats.create name: raw_cat
-    end
     if @record.save
-      flash[:notice] = "Record was successfully created."
-      redirect_to action: 'new'
+      render json: 'success'
     else        
-      flash[:notice] = "Sorry, there was an issue saving your record."
-      redirect_to action: 'new'
+      render json: 'error'
     end
   end
 

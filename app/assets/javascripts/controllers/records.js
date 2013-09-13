@@ -7,6 +7,8 @@ function($scope, Record, Cat, $location, User) {
   $scope.hue = 100;
   $scope.user = {};
 
+  $scope.yearRange = [2000, 2001, 2002];
+
   User.fetchCurrentUser().then(function(data) {
     $scope.user = data;
   });
