@@ -5,18 +5,13 @@ function($http) {
   var Cat = {};
   var _cats = [];
 
-  Cat.all = function(success, error) {
-    if (_cats.length != 0) {
-      return success(_cats);
-    }
-    $http({
+  Cat.all = function() {
+    // TODO: Add back in caching
+    return $http({
       url: '/cats.json',
       method: 'GET'
-    }).success(function(data) {
-      _cats = data;
-      success(_cats);
-    }).error(function(data) {
-      error();
+    }).then(function(res) {
+      return res.data;
     });
   };
 

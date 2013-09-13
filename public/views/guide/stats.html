@@ -1,0 +1,34 @@
+<div class="clearfix">
+  <a href="/guide" class="right mfl">Guide</a>
+  <a href="/gallery" class="right mfl">Gallery</a>
+  <a href="/stats" class="right mfl">Stats</a>
+</div>
+
+<h1 class="mkb">Stats</h1>
+
+<div class="grid">
+  <div class="unit one-of-two">
+    <div class="mzb pf ac" style="border: solid 1px #eee;">
+      <div class="mdb">Records in the last day</div>
+      <div class="th" ng-bind="stats.1d"></div>
+    </div>
+  </div>
+  <div class="unit one-of-two">
+    <div class="mzb pf ac" style="border: solid 1px #eee;">
+      <div class="mdb">Records in the last week</div>
+      <div class="th" ng-bind="stats.1w"></div>
+    </div>
+  </div>
+  <div class="unit one-of-two">
+    <div class="mzb pf ac" style="border: solid 1px #eee;">
+      <div class="mdb">Records in the last month</div>
+      <div class="th" ng-bind="stats.1m"></div>
+    </div>
+  </div>
+  <div class="unit one-of-two">
+    <div class="mzb pf ac" style="border: solid 1px #eee;">
+      <div class="mdb">Records in the last year</div>
+      <div class="th" ng-bind="stats.1y"></div>
+    </div>
+  </div>
+</div>

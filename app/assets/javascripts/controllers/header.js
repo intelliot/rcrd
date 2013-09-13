@@ -13,14 +13,13 @@ function($scope, $location, $rootScope) {
         'pattern': /settings/i
     },
     'guide': { 
-        'pattern': /guide/i
+        'pattern': /guide|gallery|stats/i
     }
   };
 
   $rootScope.$on('$locationChangeStart', function(event, next, cur) {
       var path = $location.$$path;
       angular.forEach($scope.links, function(link, key) {
-          console.log(path);
           if (path.match(link.pattern)) {
               $scope.links[key].cur = 'current';
           } else {

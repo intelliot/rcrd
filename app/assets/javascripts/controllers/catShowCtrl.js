@@ -10,15 +10,4 @@ function($scope, Cat, $routeParams, Helper) {
     $scope.records = data;
   });
 
-/*
-  Cat.all(function(cats){
-    var cat = null;
-    cats.forEach(function(iCat) {
-      if ($routeParams.catID == iCat.id) {
-        $scope.cat = iCat;
-      }
-    }); 
-  });
-*/
-
 }]);

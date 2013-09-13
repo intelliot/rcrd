@@ -42,6 +42,10 @@ function($routeProvider, $locationProvider) {
         templateUrl: '/views/guide/index.html',
         controller: 'guideCtrl'
     }).
+    when('/stats', {
+        templateUrl: '/views/guide/stats.html',
+        controller: 'statsCtrl'
+    }).
     when('/gallery', {
         templateUrl: '/views/guide/gallery.html'
     });
