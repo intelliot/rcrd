@@ -1,10 +1,15 @@
 app.controller('recordsCtrl', 
-['$scope', 'Record', 'Cat', '$location',      
-function($scope, Record, Cat, $location) {
+['$scope', 'Record', 'Cat', '$location', 'User',      
+function($scope, Record, Cat, $location, User) {
 
   $scope.records = [];
   $scope.newRecord = {};
   $scope.hue = 100;
+  $scope.user = {};
+
+  User.fetchCurrentUser().then(function(data) {
+    $scope.user = data;
+  });
 
   $scope.goToRecord = function() {
     if (!this.record) return;
@@ -12,7 +17,8 @@ function($scope, Record, Cat, $location) {
   };
 
   $scope.createRecord = function() {
-    Record.new($scope.newRecord);    
+    Record.create($scope.newRecord).then(function(data) {
+    });    
     $scope.loadRecords();
     $scope.newRecord = {};
   };

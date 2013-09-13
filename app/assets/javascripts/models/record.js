@@ -27,8 +27,12 @@ function($http, Cat) {
     });
   };
 
-  Record.new = function(newRecord) {
-    // TODO: Send to server
+  Record.create = function(params) {
+    var url = '/records.json';
+    return $http.put(url, {record: params}).then(function(res) {
+      console.log(res);
+      return res.data;
+    });
   };
 
   return Record;

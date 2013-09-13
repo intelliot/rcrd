@@ -1,11 +1,15 @@
 <form name="newRecordForm" 
       ng-submit="createRecord()"
-      class="mib">
+      class="mpb">
   <div class="input-wrap">
     <input type="text" 
            name="raw" 
            ng-model="newRecord.raw" 
            placeholder="e.g. workout, swim, Masters, Koret" />
+  </div>
+  <div class="small pcy" style="opacity: 0.6;">
+    <span ng-bind="user.time_zone"></span>
+    <a href="/settings">change</a>
   </div>
   <input type="submit" value="Create new record" />
 </form>

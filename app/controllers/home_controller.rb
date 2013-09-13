@@ -19,4 +19,11 @@ class HomeController < ApplicationController
     @stats['1y'] = Record.where('target > ?', Time.now.utc - 1.year).count
   end
 
+  def guide 
+    render 'shared/angular' 
+  end
+
+  def gallery 
+    render 'shared/angular' 
+  end
 end
