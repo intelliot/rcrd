@@ -19,6 +19,7 @@ function($scope, Record, Cat, $location, User) {
   };
 
   $scope.createRecord = function() {
+    if ($scope.newRecordForm.$invalid) return;
     Record.create($scope.newRecord).then(function(data) {
     });    
     $scope.loadRecords();
