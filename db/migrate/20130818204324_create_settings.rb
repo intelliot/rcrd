@@ -10,7 +10,7 @@ class CreateSettings < ActiveRecord::Migration
 
         t.timestamps
       end
-
+=begin
      User.all.each do |user|
        user.cats.each do |cat|
          setting = Setting.new
@@ -32,6 +32,7 @@ class CreateSettings < ActiveRecord::Migration
          setting.save
        end
      end 
+=end
    end 
   end
 end
