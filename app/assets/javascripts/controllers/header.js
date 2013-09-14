@@ -1,6 +1,8 @@
 app.controller('headerCtrl', 
-['$scope', '$location', '$rootScope',
-function($scope, $location, $rootScope) {
+['$scope', '$location', '$rootScope', 'Helper',
+function($scope, $location, $rootScope, Helper) {
+
+  $scope.statusBarColor = Helper.statusBarColor;
 
   $scope.links = {
     'dashboard': { 
@@ -26,6 +28,15 @@ function($scope, $location, $rootScope) {
               $scope.links[key].cur = '';
           }
       });
+  });
+
+  $rootScope.$on("$routeChangeError", function (event, current, previous, rejection) {
+    console.log("$routeChangeError");
+    console.log(event);
+    console.log(current);
+    console.log(previous);
+    console.log(rejection);
+    Helper.statusBarColor = $scope.statusBarColor = "red";
   });
 
 }]);

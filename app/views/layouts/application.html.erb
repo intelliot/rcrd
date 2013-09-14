@@ -6,6 +6,7 @@
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
   <meta name="viewport" content="width=device-width, user-scalable=no" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
   <script> var rcrd = {}; </script>
 </head>
 <body <% if @frontpage %>id="frontpage"<% end %>>
@@ -18,7 +19,9 @@
           <%= flash[:notice] %>
         </div>
       <% end %>
-      <header class="clearfix" ng-controller="headerCtrl">
+      <header class="clearfix" 
+              ng-controller="headerCtrl" 
+              ng-style="{'border-color': statusBarColor}">
         <h1 class="logo"><a href="/">rcrd</a></h1>
         <ul>
           <% if current_user %>

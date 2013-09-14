@@ -124,6 +124,8 @@ h1.logo {
 }
 header {
   border-bottom: solid 1px #ccc;
+  -webkit-transition: border-color 1s ease-in-out;
+  transition: border-color 1s ease-in-out;
   padding: 18px 0 6px;
   margin: 0 0 18px;
   h1 {
