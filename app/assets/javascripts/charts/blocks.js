@@ -40,7 +40,7 @@ charts.blocks = function(data) {
           .attr("height", gridSize - 2)
           .style("fill", "white");
 
-      heatMap.transition().duration(1000)
+      heatMap.transition().duration(100)
           //.style("fill", function(d) { return colorScale(d.value); });
           .style("fill", function(d) { return d.color; });
 
