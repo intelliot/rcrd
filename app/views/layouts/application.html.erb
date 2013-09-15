@@ -15,11 +15,6 @@
     <%= yield %>
   <% else %>
     <div id="everything">
-      <% if flash[:notice] %>
-        <div class="pf white" style="<%= bg_color_now %>">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
       <header class="clearfix" 
               ng-controller="headerCtrl" 
               ng-style="{'border-color': statusBarColor}">
