@@ -11,7 +11,6 @@ end
 Nassau::Application.routes.draw do
   
   get 'guide' => 'home#guide', as: :guide
-  get 'gallery' => 'home#gallery', as: :gallery
   get 'settings' => 'users#edit', as: 'settings'
   get 'about' => 'home#about', as: 'about'
   get 'stats' => 'home#stats', as: 'stats'

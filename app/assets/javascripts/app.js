@@ -45,8 +45,5 @@ function($routeProvider, $locationProvider) {
     when('/stats', {
         templateUrl: '/views/guide/stats.html',
         controller: 'statsCtrl'
-    }).
-    when('/gallery', {
-        templateUrl: '/views/guide/gallery.html'
     });
 }]);
