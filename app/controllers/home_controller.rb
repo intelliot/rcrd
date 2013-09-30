@@ -6,6 +6,7 @@ class HomeController < ApplicationController
 
   def welcome
     @frontpage = true
+    @user = User.new 
   end
 
   def about

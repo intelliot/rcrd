@@ -10,37 +10,24 @@
   <link rel="apple-touch-icon" sizes="114x114" href="<%= image_path 'touch-icon-iphone-retina.png' %>" />
   <script> var rcrd = {}; </script>
 </head>
-<body <% if @frontpage %>id="frontpage"<% end %>>
-  <% if @frontpage %>
-    <%= yield %>
-  <% else %>
-    <div id="everything">
-      <% if flash[:notice] %>
-        <div class="pf white" style="<%= bg_color_now %>">
-          <%= flash[:notice] %>
-        </div>
-      <% end %>
-      <header class="clearfix" 
-              ng-controller="headerCtrl" 
-              ng-style="{'border-color': statusBarColor}">
-        <h1 class="logo"><a href="/">rcrd</a></h1>
+<body>
+  <div id="everything">
+    <header class="clearfix" 
+            ng-controller="headerCtrl" 
+            ng-style="{'border-color': statusBarColor}">
+      <h1 class="logo"><a href="/">rcrd</a></h1>
+      <% if current_user %>
         <ul>
-          <% if current_user %>
-            <li ng-class="links.dashboard.cur"><a href="/">dashboard</a></li>
-            <li ng-class="links.records.cur"><a href="/records">records</a></li>
-            <li ng-class="links.settings.cur"><a href="/settings">settings</a></li>
-          <% else %>
-            <li class="<%= current 'home', 'welcome' %>"><a href="/">&laquo; welcome</a></li>
-            <li class="<%= current 'sessions', 'new' %>"><a href="/log-in">log in</a></li>
-            <li class="<%= current 'users', 'new' %>"><a href="/sign-up">sign up</a></li>
-          <% end %>
+          <li ng-class="links.dashboard.cur"><a href="/">dashboard</a></li>
+          <li ng-class="links.records.cur"><a href="/records">records</a></li>
+          <li ng-class="links.settings.cur"><a href="/settings">settings</a></li>
           <li ng-class="links.guide.cur"><a href="/guide">guide</a></li>
         </ul>
-      </header>
-      <div ng-view></div>
-      <%= yield %>
-    </div>
-  <% end %>
+      <% end %>
+    </header>
+    <div ng-view></div>
+    <%= yield %>
+  </div>
   <%= javascript_include_tag 'application' %>
   <script type="text/javascript">
     var _gaq = _gaq || [];

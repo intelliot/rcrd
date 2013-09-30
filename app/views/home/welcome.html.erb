@@ -1,12 +1,53 @@
-<div id="top-half">
-</div>
-<div id="bottom-half">
-  <h1><strong>rcrd</strong> is an anything tracker.</h1>
-  <nav id="links">
-    <ul>
-      <li><a href="/sign-up">sign up</a></li>
-      <li><a href="/log-in">log in</a></li>
-      <li><a href="/guide">guide</a></li>
-    </ul>
-  </nav>
-</div>
+<h2 class="mfb">Uncover patterns in what you do.</h2>
+
+<h2 class="mzt mfb">Log in</h2>
+
+<%= form_tag sessions_path do %>
+
+  <div class="input-wrap mfb">
+    <%= label_tag :email %>
+    <%= text_field_tag :email, params[:email], {placeholder: "email"} %>
+  </div>
+
+  <div class="input-wrap mfb">
+    <%= label_tag :password %>
+    <%= password_field_tag :password, params[:password], {placeholder: "password"} %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Log in" %>
+  </div>
+
+<% end %>
+
+<h2 class="mzt mfb">Create Account</h2>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages padding-all margin-bottom white" style="<%= bg_color_now %>">
+      <h3>Form is invalid</h3>
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="input-wrap mfb">
+    <%= f.label :email %>
+    <%= f.text_field :email, {placeholder: "email"} %>
+  </div>
+
+  <div class="input-wrap mfb">
+    <%= f.label :password %>
+    <%= f.password_field :password, {placeholder: "password"} %>
+  </div>
+
+  <div class="input-wrap mfb">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, {placeholder: "password confirmation"} %>
+  </div>
+
+  <p><%= f.submit %></p>
+<% end %>

@@ -12,6 +12,10 @@ function($scope, User) {
   $scope.timeZoneMessage = "";
   $scope.timeZoneNow = "";
 
+  $scope.logout = function() {
+    window.location = "/logout";
+  };
+
   $scope.timeZonesUS = [ 
     {name: "Hawaii", offset: 10},
     {name: "Alaska", offset: 9},
