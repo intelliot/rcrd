@@ -32,7 +32,4 @@ class HomeController < ApplicationController
     render 'shared/angular' 
   end
 
-  def gallery 
-    render 'shared/angular' 
-  end
 end
