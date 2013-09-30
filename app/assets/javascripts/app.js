@@ -7,7 +7,8 @@ angular.element(document).ready(function() {
 app.config([
 '$routeProvider',
 '$locationProvider',
-function($routeProvider, $locationProvider) {
+'$httpProvider',
+function($routeProvider, $locationProvider, $httpProvider) {
   $locationProvider.html5Mode(true);
   $routeProvider.
     when('/', {
@@ -46,4 +47,8 @@ function($routeProvider, $locationProvider) {
         templateUrl: '/views/guide/stats.html',
         controller: 'statsCtrl'
     });
+
+    // TODO: Remove dependency on jQuery 
+    var csrfToken = $('meta[name=csrf-token]').attr('content');
+    $httpProvider.defaults.headers.common['X-CSRF-Token'] = csrfToken;
 }]);

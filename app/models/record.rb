@@ -10,6 +10,8 @@ class Record < ActiveRecord::Base
     {
       id: self.id,
       target: self.target,
+      target_unix: self.target.to_i,
+      local_target: self.local_target,
       hue: self.hue,
       cats: self.cats_from_raw,
       raw: self.raw

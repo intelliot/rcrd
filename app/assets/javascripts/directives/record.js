@@ -17,9 +17,9 @@ app.directive('record', ['$location', function($location) {
         },
         template:
           '<div>'+
-            '<div ng-bind="data.target|date:\'medium\'"'+
+            '<div ng-bind="data.target_unix*1000|date:\'medium\'"'+
                  'class="small grey mcb click"'+
-                 'ng-click="goToRecord()"></div>'+
+                 'ng-click="goToRecord()"></div>{{data.target}}'+
             '<cat ng-repeat="cat_name in data.cats"'+
                  'raw="cat_name"'+
                  'hue="data.hue"></cat>'+

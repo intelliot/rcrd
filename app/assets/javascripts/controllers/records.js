@@ -10,7 +10,6 @@ function($scope, Record, Cat, $location, User) {
   // TODO: Make this reflect users' current time zone
   var d = new Date();
   $scope.newRecord.year = d.getFullYear();
-  console.log(d.getFullYear());
   $scope.newRecord.month = d.getMonth();
   $scope.newRecord.day = d.getUTCDate();
   $scope.newRecord.hour = d.getHours();
@@ -62,7 +61,7 @@ function($scope, Record, Cat, $location, User) {
     Record.create($scope.newRecord).then(function(data) {
     });    
     $scope.loadRecords();
-    $scope.newRecord = {};
+    $scope.newRecord.raw = "";
   };
 
   $scope.loadRecords = function() {
