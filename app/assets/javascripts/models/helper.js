@@ -11,7 +11,6 @@ function($http) {
   var _interval;
 
   var _regenerateHue = function() {
-    console.log('regen');
     var now = new Date();
     var minutes = (now.getMinutes())
                 + (now.getHours() * 60);

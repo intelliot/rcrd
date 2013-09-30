@@ -1,7 +1,7 @@
 
 app.factory('Cat', 
-['$http',      
-function($http) {
+['$http', 'Helper',      
+function($http, Helper) {
   var Cat = {};
   var _cats = [];
 
@@ -29,7 +29,6 @@ function($http) {
   Cat.fetchRecords = function(catName) {
     var url = '/cats/'+catName+'/records.json';
     return $http.get(url).then(function(res) {
-      console.log(res);
       return res.data;
     });
   }; 
