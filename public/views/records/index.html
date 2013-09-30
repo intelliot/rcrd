@@ -41,10 +41,5 @@
 
 <div ng-repeat="record in records"
      class="mfb">
-  <div ng-bind="record.target|date:'medium'"
-       class="small grey mcb click"
-       ng-click="goToRecord()"></div>
-  <cat ng-repeat="cat_name in record.cats"
-       raw="cat_name" 
-       hue="record.hue"></cat>
+  <record data="record"></record>
 </div>

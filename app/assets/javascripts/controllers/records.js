@@ -57,11 +57,6 @@ function($scope, Record, Cat, $location, User) {
     $scope.user = data;
   });
 
-  $scope.goToRecord = function() {
-    if (!this.record) return;
-    $location.path('/records/'+this.record.id);
-  };
-
   $scope.createRecord = function() {
     if ($scope.newRecordForm.$invalid) return;
     Record.create($scope.newRecord).then(function(data) {

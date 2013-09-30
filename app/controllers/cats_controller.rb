@@ -29,12 +29,16 @@ class CatsController < ApplicationController
   end
 
   def records
-    name = params[:cat_name].chomp.singularize
+    # MUSING: I guess the only way to do this well is to look for
+    # singular and plural forms of the same word...
+    name_singular = params[:cat_name].chomp.singularize.downcase
+    name_plural = params[:cat_name].chomp.pluralize.downcase
     # TODO: Look up any aliases, if one exists, 
     # start process again with that alias
-    # Singularize cat
     @records = []
-    proto_records = current_user.records.where("raw ~ ?", "[\s\d\.]*#{name}[\s]*,|,[\s\d\.]*#{name}[\s]*|,[\s\d\.]*#{name}[\s]*,")
+    singular_records = current_user.records.where("lower(raw) ~ ?", "[\s\d\.]*#{name_singular}[\s]*,|,[\s\d\.]*#{name_singular}[\s]*|,[\s\d\.]*#{name_singular}[\s]*,")
+    plural_records = current_user.records.where("lower(raw) ~ ?", "[\s\d\.]*#{name_plural}[\s]*,|,[\s\d\.]*#{name_plural}[\s]*|,[\s\d\.]*#{name_plural}[\s]*,")
+    proto_records = singular_records | plural_records
     proto_records.each {|r| @records.push r.sanitize }
     render :json => @records
   end
