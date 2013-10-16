@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     @output_user = {
       id: current_user.id,
       email:  current_user.email,
-      time_zone: current_user.time_zone
+      time_zone: current_user.time_zone,
+      local_time: current_user.local_time.now
     } 
     render json: @output_user 
   end

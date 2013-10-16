@@ -1,42 +1,45 @@
 <form name="newRecordForm" 
       ng-submit="createRecord()"
       class="mpb">
-  <div class="input-wrap">
-    <input type="text" 
-           name="raw" 
-           ng-model="newRecord.raw" 
-           placeholder="e.g. workout, swim, Masters, Koret"
-           required />
+
+  <div class="input-wrap mby">
+    <div class="grid">
+
+      <div class="unit span-grid pcb">
+        <input type="text" 
+               style="font-size:16px; padding:0.6em;"
+               ng-model="newRecord.raw" 
+               placeholder="e.g. workout, run, 4.2 miles, Golden Gate Park"
+               required />
+      </div>
+
+      <div class="unit span-grid pcb">
+        <input type="text" 
+               style="font-size:16px; padding:0.6em;"
+               ng-model="newRecord.target" 
+               placeholder="target time"
+               required />
+      </div>
+
+      <div class="unit one-of-two">
+        <div class="small pcy" style="opacity: 0.6;">
+          <span ng-bind="user.time_zone"></span>
+          <a href="/settings">change</a>
+        </div>
+      </div>
+
+      <div class="unit one-of-two">
+        <div class="right">
+          <input type="submit" 
+                 style="font-size:16px;"
+                 value="Record" />
+        </div>
+      </div>
+
+    </div>
   </div>
-  <div class="small pcy" style="opacity: 0.6;">
-    <span ng-bind="user.time_zone"></span>
-    <a href="/settings">change</a>
-  </div>
-  <div class="pcy">
-    <select name="year"
-            ng-model="newRecord.year"
-            ng-options="d for d in yearRange">
-    </select>
-    <select name="month"
-            ng-model="newRecord.month"
-            ng-options="d for d in monthRange">
-    </select>
-    <select name="day"
-            ng-model="newRecord.day"
-            ng-options="d for d in dayRange">
-    </select>
-    <span class="mfr"></span> 
-    <select name="hour"
-            ng-model="newRecord.hour"
-            ng-options="d for d in hourRange">
-    </select>
-    :
-    <select name="minute"
-            ng-model="newRecord.minute"
-            ng-options="d for d in minuteRange">
-    </select>
-  </div>
-  <input type="submit" value="Create new record" />
+
+
 </form>
 
 <div ng-repeat="record in records"

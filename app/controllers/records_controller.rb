@@ -64,20 +64,10 @@ class RecordsController < ApplicationController
   end
 
   def create      
-    target = Time.new(
-      params[:record]["year"],
-      params[:record]["month"],
-      params[:record]["day"],
-      params[:record]["hour"],
-      params[:record]["minute"]
-    )#.in_time_zone(current_user.local_time)
-    #target = current_user.local_time.local_to_utc(target)
-    puts target.inspect
-    ["year", "month", "day", "hour", "minute"].each do |a| 
-      params[:record].delete(a)
-    end
+    puts params[:record].inspect
     @record = current_user.records.new(params[:record])
-    @record.target = target 
+    @record.target = current_user.local_time.local_to_utc(@record.target)
+    puts @record.inspect
     if @record.save
       render json: @record.sanitize 
     else        
