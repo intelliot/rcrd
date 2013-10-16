@@ -18,6 +18,7 @@ group :assets do
   gem 'd3-rails'
   gem 'jquery-rails'
   gem 'angularjs-rails'
+  gem "fungible-rails", "~> 0.0.6"
 end
 
 group :test do
