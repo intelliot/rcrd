@@ -6,6 +6,16 @@ class CatsController < ApplicationController
     # a more in-depth report of cat usage (frequency, cohorts)
     # a stream (the squiggly bulgy timeline one) graph of cats would be cool
     @trending = current_user.get_trending_cats.slice 0, 100
+
+    @records = []
+    if params[:query]
+      @cats = Cat.search_cats params[:query]
+    end
+
+    respond_to do |format|
+      format.html # index.html.erb
+      format.json { render json: @cats }
+    end
   end
 
   def show

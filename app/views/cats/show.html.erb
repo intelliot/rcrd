@@ -5,11 +5,84 @@
 </div>
 
 <div class="mfb pf bg-grey">
-  <% if @cat.id %>
-    <%= link_to 'Edit Cat Settings', "/cats/"+@cat.name+"/edit" %>
-  <% else %>
-    <%= link_to 'Start Tracking this Cat', new_cat_path(@cat, {name: @name}) %>
-  <% end %>
+  <%= link_to 'Edit Cat Settings', "/cats/"+@cat.name+"/edit" %>
+</div>
+
+<div class="mfb bady">
+  <table>
+    <tr>
+      <td>Last 7 days</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Last 30 days</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Last 90 days</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Last 180 days</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Last 365 days</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>The week of (X X) so far</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>The month of (X) so far</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Year (2014) to date</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week for the last 2 weeks</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week for the last 4 weeks</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week for the last 8 weeks</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week for the last 16 weeks</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week for all time</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per week since 1 year ago (Nov 10, 2013)</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per month for the last 2 months</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per month for the last 6 months</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per month for the last year</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <td>Average per month for all time</td>
+      <td>0</td>
+    </tr>
+  </table>
 </div>
 
 <%= render partial: "shared/records", locals: {records: @records} %>

@@ -1,4 +1,3 @@
-
 <!--
 <h1>Cats</h1>
 <div class="input-wrap mft mkb">
@@ -6,8 +5,19 @@
 </div>
 -->
 
-<h2 class="mfb">50 Most frequently used cats</h2>
+<h2 class="mfb">100 Most frequently used cats</h2>
 
-<% @trending.each do |cat| %>
+<div class="mfb">
+  <%= form_tag "/cats/search" do %>
+    <div class="input-wrap">
+      <%= text_field_tag "query", "", {
+        placeholder: "cat search...", 
+        id: "cat-search"} %>
+    </div>
+    <%= submit_tag "Search" %>
+  <% end %>
+</div>
+
+<% @cats.each do |cat| %>
   <%= render :partial => "shared/cat", :locals => {:cat => cat, :hue => hue_now} %>
 <% end %>
