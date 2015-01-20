@@ -2,6 +2,10 @@
 
 # rcrd
 
-rcrd is a tool I built to track habits, like exercise or drinking.
+rcrd is a tool I built to track habits. I run a hosted version at [rcrd.org](https://www.rcrd.org/), but anybody should be able to clone this repository and set up a server themselves.
 
-[http://rcrd.org/guide](http://rcrd.org/guide)
+## Installing and running the app
+
+```bash
+npm start
+```

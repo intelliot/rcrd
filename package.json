@@ -1,0 +1,29 @@
+{
+  "name": "rcrd",
+  "version": "1.0.0",
+  "description": "<a href=\"https://travis-ci.org/jeffcarp/rcrd/\"><img src=\"https://travis-ci.org/jeffcarp/rcrd.png?branch=edge\" /></a>",
+  "main": "index.js",
+  "dependencies": {
+    "express-react-views": "^0.7.0",
+    "pg": "^4.2.0",
+    "moment-timezone": "^0.3.0",
+    "express": "^4.11.0",
+    "moment": "^2.9.0",
+    "react": "^0.12.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "iojs index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffcarp/rcrd.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jeffcarp/rcrd/issues"
+  },
+  "homepage": "https://github.com/jeffcarp/rcrd"
+}
