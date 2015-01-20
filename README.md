@@ -1,4 +1,4 @@
-<a href="https://travis-ci.org/jeffcarp/rcrd/"><img src="https://travis-ci.org/jeffcarp/rcrd.png?branch=edge" /></a>
+<a href="https://travis-ci.org/jeffcarp/rcrd/"><img src="https://travis-ci.org/jeffcarp/rcrd.png?branch=iojs" /></a>
 
 # rcrd
 
